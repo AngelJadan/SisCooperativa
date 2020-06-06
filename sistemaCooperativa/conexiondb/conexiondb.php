@@ -16,9 +16,5 @@ class conexion{
         $this->conexion->set_charset('utf8mb4');
         
     } 
-    public function hola()
-    {
-        # hola 
-    }
-    //hola mundo
+    
 }
