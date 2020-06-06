@@ -15,5 +15,9 @@ class conexion{
         $this->conexion =   new mysqli($this->host, $this->user,$this->password,$this->db);
         $this->conexion->set_charset('utf8mb4');
         
-    }   
+    } 
+    public function hola()
+    {
+        # code...
+    }
 }
