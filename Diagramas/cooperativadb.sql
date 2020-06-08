@@ -93,7 +93,8 @@ CREATE TABLE `depositos` (
   `dep_monto` float NOT NULL,
   `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL,
-  `estadocuentas_ect_id` decimal(10,0) NOT NULL
+  `estadocuentas_ect_id` decimal(10,0) NOT NULL,
+  `dep_fecha` varchar NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
