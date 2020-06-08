@@ -20,7 +20,14 @@ $password=$user->generarContrasenia();
 //echo "pas: ".$password;
 $resultado=$user->insertarUsuario($cedula,$nombre,$apellido,$rol,$correo,$telefono,$direccion,$password,$usuario);
 
-echo $resultado;
+if($resultado=="Guardado"){
+    if($rol=="Cliente"){
+        header("Location: ../../../Publica/coperativa/regCliente.php?usuario=".$usuario."&nombre=".$nombre
+        ."&apellido=".$apellido."&cedula=".$cedula);
+    }else{
+        header("Location: ../../../Publica/coperativa/administrativos.php");
+    }
+}
 
 
 ?>

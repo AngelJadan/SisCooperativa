@@ -30,28 +30,13 @@
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Bienvenido: </h1>
+                            <h1>Depositos: </h1>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarUsu.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/depositar.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula"></td></tr>
-                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td></tr>
-                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td></tr>
-                                    <tr><td><label>Rol</label></td><td><select name="cboxrol">
-                                                                                    <option value="Administrador">Administrador</option> 
-                                                                                    <option value="Cajero" selected>Cajero</option>
-                                                                                    <option value="Cliente">Cliente</option>
-                                                                                    <option value="Asesor">Asesor de crédito</option>
-                                                                        </select></td></tr>
-                                    <tr><td><label>Correo:</label></td><td><input id="txtcorreo" name="txtcorreo"></td></tr>
-                                    <tr><td><label>Teléfono:</label></td><td><input id="txttelefono" name="txttelefono"></td></tr>
-                                    <tr><td><label>Direccion:</label></td><td><input id="txtdireccion" name="txtdireccion"></td></tr>
-                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario"></td></tr>
-                                    <tr><td><button type="submit" name="registrar" id="registrar">Registrar</button></td>
-                                    <td><button type="submit" name="actualizar" id="actualizar">Actualizar</button>
-                                    <button type="submit" name="cancelar" id="cancelar">Cancelar</button></td></tr>
+                                    <tr><td>Numero de Cuenta:</td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>
                                 </tbody>
                             </table>
                             </form>
@@ -97,7 +82,7 @@
                             <img class="rectangle-6CDbpr" src="./img/noticias-rectangle-7@2x.png"/>
                         </a>
                         <div class="coprerativa-virtual-mH4mCL font-class-3">
-                            Coprerativa <br />Virtual
+                            Cerrar <br />Sesión
                         </div>
                     </div>
                 </div>

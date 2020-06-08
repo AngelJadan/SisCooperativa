@@ -30,28 +30,28 @@
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Bienvenido: </h1>
+                            <h1>Depositos: </h1>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarUsu.php" method="POST">
+                            <?php
+                            $cta=$_GET["cta"];
+                            $nombre=$_GET["nombre"];
+                            $apellido=$_GET["apellido"];
+                            $cedula=$_GET["cedula"];
+                            ?>
+                        <form action="../../sistemaCooperativa/controlador/usuarios/realizarDep.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula"></td></tr>
-                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td></tr>
-                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td></tr>
-                                    <tr><td><label>Rol</label></td><td><select name="cboxrol">
-                                                                                    <option value="Administrador">Administrador</option> 
-                                                                                    <option value="Cajero" selected>Cajero</option>
-                                                                                    <option value="Cliente">Cliente</option>
-                                                                                    <option value="Asesor">Asesor de crédito</option>
-                                                                        </select></td></tr>
-                                    <tr><td><label>Correo:</label></td><td><input id="txtcorreo" name="txtcorreo"></td></tr>
-                                    <tr><td><label>Teléfono:</label></td><td><input id="txttelefono" name="txttelefono"></td></tr>
-                                    <tr><td><label>Direccion:</label></td><td><input id="txtdireccion" name="txtdireccion"></td></tr>
-                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario"></td></tr>
-                                    <tr><td><button type="submit" name="registrar" id="registrar">Registrar</button></td>
-                                    <td><button type="submit" name="actualizar" id="actualizar">Actualizar</button>
-                                    <button type="submit" name="cancelar" id="cancelar">Cancelar</button></td></tr>
+                                    <tr></tr>
+                                    <tr><td><label>Cuenta:</label></td><td><input id="txtcta" name="txtcta" value="<?php echo $cta?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre" value="<?php echo $nombre?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido" value="<?php echo $apellido?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Cedula/Pasaporte:</label></td><td><input id="txtcedula" name="txtcedula" value="<?php echo $cedula?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Cedula/Pasaporte del Depositante:</label></td><td><input id="txtcedulaDep" name="txtcedulaDep"></td></tr>
+                                    <tr><td><label>Nombre del Depositante:</label></td><td><input id="txtnomDep" name="txtnomDep"></td></tr>
+                                    <tr><td><label>Monto a depositar:</label></td><td><input id="txtmonto" name="txtmonto" ></td></tr>
+                                    <tr><td><button type="submit" name="btndepositar" id="btndepositar">Depositar</button></td>
+                                    <td><button type="submit" name="btncancelar" id="btncancelar">Cancelar</button></td></tr>
                                 </tbody>
                             </table>
                             </form>
@@ -97,7 +97,7 @@
                             <img class="rectangle-6CDbpr" src="./img/noticias-rectangle-7@2x.png"/>
                         </a>
                         <div class="coprerativa-virtual-mH4mCL font-class-3">
-                            Coprerativa <br />Virtual
+                            Cerrar <br />Sesión
                         </div>
                     </div>
                 </div>

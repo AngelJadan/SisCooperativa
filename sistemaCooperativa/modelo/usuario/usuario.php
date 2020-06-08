@@ -18,16 +18,24 @@ class Usuario extends Conexion {
         $query=Conexion::conectar()->prepare($insPer);
         $query2=Conexion::conectar()->prepare($insUsu);
         $mensaje="";
-        if($query->execute()&&$query2->execute(9)){
-            $mensaje="Se ha guardado exitosamente";
+        if($query->execute()&&$query2->execute()){
+            $mensaje="Guardado";
         }else{
-            $mensaje="No se ha podido guardar los datos";
+            $mensaje="Noguardado";
         }
         return $mensaje;
     }
     public function buscarUsuario($usuario,$password){   
         echo $usuario;   
         $sql="SELECT * FROM USUARIOS WHERE USU_USUARIO='".$usuario."' AND USU_PASSWORD='".$password."';";
+        $query=Conexion::conectar()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function buscarUsuarioPer($usuario,$cedula){   
+        echo $usuario;   
+        $sql="SELECT U.usu_usuario, P.per_identificacion FROM USUARIOS U, PERSONAS P WHERE USU_USUARIO='".$usuario."' AND USU_PERSONAS_IDENTIFICACION='".$cedula."';";
         $query=Conexion::conectar()->prepare($sql);
         $query->execute();
         return $query->fetchAll();

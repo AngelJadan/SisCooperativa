@@ -1,3 +1,12 @@
+<?php
+
+$usuario=$_GET["usuario"];
+$nombre=$_GET['nombre'];
+$apellido=$_GET['apellido'];
+$cedula=$_GET['cedula'];
+
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,25 +39,17 @@
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Bienvenido: </h1>
+                            <h3>Confirmacion de registro de cliente </h3>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarUsu.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarCli.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula"></td></tr>
-                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td></tr>
-                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td></tr>
-                                    <tr><td><label>Rol</label></td><td><select name="cboxrol">
-                                                                                    <option value="Administrador">Administrador</option> 
-                                                                                    <option value="Cajero" selected>Cajero</option>
-                                                                                    <option value="Cliente">Cliente</option>
-                                                                                    <option value="Asesor">Asesor de crédito</option>
-                                                                        </select></td></tr>
-                                    <tr><td><label>Correo:</label></td><td><input id="txtcorreo" name="txtcorreo"></td></tr>
-                                    <tr><td><label>Teléfono:</label></td><td><input id="txttelefono" name="txttelefono"></td></tr>
-                                    <tr><td><label>Direccion:</label></td><td><input id="txtdireccion" name="txtdireccion"></td></tr>
-                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario"></td></tr>
+                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name ="txtcedula" value='<?php echo $cedula?>'readonly=»readonly»/></td></tr>
+                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre" value='<?php echo $nombre?>'readonly=»readonly»/></td></tr>
+                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido" value='<?php echo $apellido?>'readonly=»readonly»/></td></tr>
+                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario" value='<?php echo $usuario?>'readonly=»readonly»/></td></tr>
+                                    <tr><td><label>Cta. Numero:</label></td><td><input id="txtcta" name="txtcta"></td></tr>
                                     <tr><td><button type="submit" name="registrar" id="registrar">Registrar</button></td>
                                     <td><button type="submit" name="actualizar" id="actualizar">Actualizar</button>
                                     <button type="submit" name="cancelar" id="cancelar">Cancelar</button></td></tr>
