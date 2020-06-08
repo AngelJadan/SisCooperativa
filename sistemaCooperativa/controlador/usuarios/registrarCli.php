@@ -18,5 +18,4 @@ if($resultado=="Guardado"){
     echo "Se ha generado un error";
 }
 
-
 ?>

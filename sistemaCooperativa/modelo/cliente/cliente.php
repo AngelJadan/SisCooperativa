@@ -62,5 +62,7 @@ class Cliente extends Conexion {
         }
         return $mensaje;
     }
+    public function consultaSaldo($cta){
+    }
 }
 ?>

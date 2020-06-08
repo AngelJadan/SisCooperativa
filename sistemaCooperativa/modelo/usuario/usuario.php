@@ -56,7 +56,7 @@ class Usuario extends Conexion {
 				
 				/*Configuracion de variables para enviar el correo*/
 				$mail_username="angel.jadan12@gmail.com";//Correo electronico saliente ejemplo: tucorreo@gmail.com
-				$mail_userpassword="Ang19932014";//Tu contraseña de gmail
+				$mail_userpassword="";//Tu contraseña de gmail
 				$mail_addAddress=$correo;//correo electronico que recibira el mensaje
 				$template="email_template.html";//Ruta de la plantilla HTML para enviar nuestro mensaje
 				
