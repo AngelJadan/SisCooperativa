@@ -1,27 +1,13 @@
 <?php
-
-<<<<<<< HEAD
-
-class Conexion{
-    private static $conexion=null;
-    private function __construct(){}
-
-    public static function conectar(){
-        $pdo_options[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
-        self::$conexion=new PDO('mysql:host=localhost;dbname=cooperativadb','root','',$pdo_options);
-        return self::$conexion;
-    }
-=======
-    public function __construct()
-    {
-        $this->host     =   'localhost';
-        $this->db       =   'cooperativadb';
-        $this->user     =   'root';
-        $this->password =   '';
-        $this->conexion =   new mysqli($this->host, $this->user,$this->password,$this->db);
-        $this->conexion->set_charset('utf8mb4');
-        
-    } 
+    $host="127.0.0.1";
+    $port=3306;
+    $socket="";
+    $user="root";
+    $password="";
+    $dbname="cooperativadb";
     
->>>>>>> 6719350e1cfb7dda9e6b64100bf6f44ff71c0796
-}
+    $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+        or die ('Could not connect to the database server' . mysqli_connect_error());
+    
+    //$con->close();
+?>
