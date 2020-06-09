@@ -1,6 +1,5 @@
 <?php
-$cajero=$_GET["cajero"];
-echo $cajero;
+$cajero=$_GET['cajero'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,13 +34,28 @@ echo $cajero;
                     <div class="fondAdmi">
                         <div>
                             <h1>Depositos: </h1>
+                            <h3>Cajero: <?php echo $cajero?></h3>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/depositar.php" method="POST">
+                            <?php
+                            $cta=$_GET["cta"];
+                            $nombre=$_GET["nombre"];
+                            $apellido=$_GET["apellido"];
+                            $cedula=$_GET["cedula"];
+                            ?>
+                        <form action="../../sistemaCooperativa/controlador/usuarios/realizarRet.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td>Cajero: <?php echo $cajero?></td></tr>
-                                    <tr><td>Numero de Cuenta:</td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>
+                                    <tr></tr>
+                                    <tr><td><label>Cuenta:</label></td><td><input id="txtcta" name="txtcta" value="<?php echo $cta?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre" value="<?php echo $nombre?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido" value="<?php echo $apellido?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Cedula/Pasaporte:</label></td><td><input id="txtcedula" name="txtcedula" value="<?php echo $cedula?>" readonly=»readonly»></td></tr>
+                                    <tr><td><label>Cedula/Pasaporte del beneficiario:</label></td><td><input id="txtcedulaBen" name="txtcedulaBen"></td></tr>
+                                    <tr><td><label>Nombre del beneficiario:</label></td><td><input id="txtnomDep" name="txtnomBen"></td></tr>
+                                    <tr><td><label>Monto a retirar:</label></td><td><input id="txtmonto" name="txtmonto" ></td></tr>
+                                    <tr><td><button type="submit" name="btnretirar" id="btnretirar">Retirar</button></td>
+                                    <td><button type="submit" name="btncancelar" id="btncancelar">Cancelar</button></td></tr>
                                 </tbody>
                             </table>
                             </form>

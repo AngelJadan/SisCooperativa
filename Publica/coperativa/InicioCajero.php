@@ -33,13 +33,14 @@ $usuario=$_GET["usuario"];
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Bienvenido: </h1>
+                            <h1>Bienvenido: <?php echo $usuario?></h1>
                         </div>
                         <div>
                         <form action="../../sistemaCooperativa/controlador/usuarios/depositar.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td>Numero de Cuenta:</td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>
+                                    <tr><td><a href="cajerobusCta.php?cajero=<?php echo $usuario?>">Depositos</a></td><td></td></tr>
+                                    <tr><td><a href="cajerobusCtaRet.php?cajero=<?php echo $usuario?>">Retiros</a></td><td></td></tr>
                                 </tbody>
                             </table>
                             </form>
