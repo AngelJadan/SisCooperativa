@@ -91,7 +91,7 @@ class Cliente extends Conexion {
         $insPer="INSERT INTO Retiros VALUES(1,'".$cbene."',".$monto
         .",'".$fecha."','".$cajero."',".$cta.",".$estCtaId.");";
 
-        //echo $insPer;
+        //  echo $insPer;
 
         $query=Conexion::conectar()->prepare($insPer);
         $mensaje="";
