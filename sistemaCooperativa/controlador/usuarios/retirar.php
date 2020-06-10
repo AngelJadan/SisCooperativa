@@ -2,6 +2,7 @@
 require_once "../../modelo/cliente/cliente.php";
 
 $cta = htmlspecialchars($_POST['txtcta']);
+$cajero = htmlspecialchars($_GET["cajero"]);
 
 $cli=new Cliente();
 
@@ -12,5 +13,5 @@ foreach($resultado as $key =>$value){
     $apellido=$value["PER_APELLIDO"];
     $cedula=$value["PER_IDENTIFICACION"];
 }
-header("Location: ../../../Publica/coperativa/cajeroRetiro.php?cta=".$cta."&nombre=".$nombre."&apellido=".$apellido."&cedula=".$cedula);
+header("Location: ../../../Publica/coperativa/cajeroRetiro.php?cajero=".$cajero."&cta=".$cta."&nombre=".$nombre."&apellido=".$apellido."&cedula=".$cedula);
 ?>

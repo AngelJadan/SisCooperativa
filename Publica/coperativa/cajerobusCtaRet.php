@@ -1,3 +1,6 @@
+<?php
+$cajero=$_GET["cajero"];
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,9 +34,10 @@
                     <div class="fondAdmi">
                         <div>
                             <h1>Retiros: </h1>
+                            <h4>Cajero: <?php echo $cajero?></h4>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/retirar.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/retirar.php?cajero=<?php echo $cajero?>" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
                                     <tr><td>Numero de Cuenta:</td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>

@@ -16,7 +16,7 @@ class Cliente extends Conexion {
         
         $insPer="INSERT INTO CLIENTES VALUES(0,'".$cta."','".$fecha."','".$usuario."');";
 
-        echo $insPer;
+        //echo $insPer;
         $query=Conexion::conectar()->prepare($insPer);
         $saldoInicial=0.00;
         $regCta=crearEstadoCta($cta,"inicial",$saldoInicial);
@@ -36,7 +36,7 @@ class Cliente extends Conexion {
         
         $insPer="INSERT INTO ESTADOCUENTAS VALUES(0,'".$fecha."','".$operacion."',".$saldo.",'".$cuenta."');";
         
-        echo $insPer;
+        //echo $insPer;
         $query=Conexion::conectar()->prepare($insPer);
         $mensaje="";
         if($query->execute()){
@@ -72,7 +72,7 @@ class Cliente extends Conexion {
         $insPer="INSERT INTO DEPOSITOS VALUES(0,'".$cdepositante."','".$ndepositante
         ."',".$monto.",'".$cta."','".$cajero."',".$estCta.",'".$fecha."');";
 
-        echo $insPer;
+        //echo $insPer;
         $query=Conexion::conectar()->prepare($insPer);
         $mensaje="";
         if($query->execute()){
@@ -82,17 +82,60 @@ class Cliente extends Conexion {
         }
         return $mensaje;
     }
-    public function consultaSaldo($cta){
+    public function retirarCliente($cbene,$monto,$cajero,$cta,$estCtaId){
         $dia= date('d');
         $mes= date('m');
         $anio= date('yy');
-        $fecha=$dia."/".$mes."/".$anio;
+        $fecha=$anio."-".$mes."-".$dia;
         
+        $insPer="INSERT INTO Retiros VALUES(1,'".$cbene."',".$monto
+        .",'".$fecha."','".$cajero."',".$cta.",".$estCtaId.");";
+
+        //echo $insPer;
+
+        $query=Conexion::conectar()->prepare($insPer);
+        $mensaje="";
+        if($query->execute()){
+            $mensaje="Retirado";
+        }else{
+            $mensaje="Noretirado";
+        }
+        return $mensaje;
+    }
+    public function consultaSaldo($cta){        
         $insPer="SELECT ECT_SALDO FROM ESTADOCUENTAS,CLIENTES 
         WHERE CLI_CUENTA_AHORROS=".$cta." AND CLIENTES_CLI_CUENTA_AHORROS=CLI_CUENTA_AHORROS";
 
-        echo $insPer;
+        //echo $insPer;
         $query=Conexion::conectar()->prepare($insPer);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    public function actualziarEstCta($cta, $nuevoSaldo,$opearacion){
+        $dia= date('d');
+        $mes= date('m');
+        $anio= date('yy');
+        $fecha=$anio."/".$mes."/".$dia;
+        
+        $insPer="INSERT INTO EstadoCuentas  VALUES(3,'".$fecha."','".$opearacion
+        ."',".$nuevoSaldo.",'".$cta."');";
+
+        //echo $insPer;
+        $query=Conexion::conectar()->prepare($insPer);
+        $mensaje="";
+        if($query->execute()){
+            $mensaje="Guardado";
+        }else{
+            $mensaje="Noguardado";
+        }
+        return $mensaje;
+    }
+    public function consultaIdEstCta($fecha,$operacion,$nuevoSaldo,$cta){
+        $sql="SELECT ECT_ID FROM EstadoCuentas WHERE ect_fecha='".$fecha."' 
+        AND ect_tipo_operacion='".$operacion."' AND ect_saldo=".$nuevoSaldo.
+        " AND Clientes_cli_cuenta_ahorros='".$cta."';";
+        
+        $query=Conexion::conectar()->prepare($sql);
         $query->execute();
         return $query->fetchAll();
     }
