@@ -1,17 +1,4 @@
 <?php
-<<<<<<< HEAD
-    $host="127.0.0.1";
-    $port=3306;
-    $socket="";
-    $user="root";
-    $password="";
-    $dbname="cooperativadb";
-    
-    $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-        or die ('Could not connect to the database server' . mysqli_connect_error());
-    
-    //$con->close();
-=======
 
 class Conexion{
         private $conexion=null;   
@@ -44,5 +31,4 @@ class Conexion{
 }
 $conec=new Conexion();
 //$conec->conectar();
->>>>>>> 0e514ccfb99c569266c3afdec40f2a52f3cb5298
 ?>
