@@ -30,31 +30,36 @@
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Depositos: </h1>
+                            <h1>Estado de Cuenta: </h1>
                         </div>
                         <div>
                             <?php
-                            $cta=$_GET["cta"];
-                            $nombre=$_GET["nombre"];
-                            $apellido=$_GET["apellido"];
-                            $cedula=$_GET["cedula"];
-                            ?> 
-                        <form action="../../sistemaCooperativa/controlador/usuarios/realizarDep.php" method="POST">
-                            <table class="tablaRegUsu">
-                                <tbody>
-                                    <tr></tr>
-                                    <tr><td><label>Cuenta:</label></td><td><input id="txtcta" name="txtcta" value="<?php echo $cta?>" readonly=»readonly»></td></tr>
-                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre" value="<?php echo $nombre?>" readonly=»readonly»></td></tr>
-                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido" value="<?php echo $apellido?>" readonly=»readonly»></td></tr>
-                                    <tr><td><label>Cedula/Pasaporte:</label></td><td><input id="txtcedula" name="txtcedula" value="<?php echo $cedula?>" readonly=»readonly»></td></tr>
-                                    <tr><td><label>Cedula/Pasaporte del Depositante:</label></td><td><input id="txtcedulaDep" name="txtcedulaDep"></td></tr>
-                                    <tr><td><label>Nombre del Depositante:</label></td><td><input id="txtnomDep" name="txtnomDep"></td></tr>
-                                    <tr><td><label>Monto a depositar:</label></td><td><input id="txtmonto" name="txtmonto" ></td></tr>
-                                    <tr><td><button type="submit" name="btndepositar" id="btndepositar">Depositar</button></td>
-                                    <td><button type="submit" name="btncancelar" id="btncancelar">Cancelar</button></td></tr>
-                                </tbody>
-                            </table>
-                            </form>
+                                $cliente = $_GET["usuario"];
+                                echo"<h2>Bienvenido: $cliente</h2>";
+                            ?>
+                            <table border="1">
+                                <tr>
+                                <th>Num Cuenta</th>
+                                <th>Usuario</th>
+                                <th>Ultimas Transacciones</th>
+                                <th>Saldo</th>
+                                </tr>
+                                <?php
+                                require_once "../../sistemaCooperativa/controlador/usuarios/realizarEstadoCuenta.php";
+                                $ect=new EstadoCuenta();
+                                
+                                foreach($ect->listarEstadoCuenta() as $key =>$value){
+
+                                ?>
+                                <tr>
+                                <td><?php echo $row=$value['cli_cuenta_ahorros'] ?></td>
+                                <td><?php echo $row=$value['usuarios_usu_usuario'] ?></td>
+                                <td><?php echo $row=$value['ect_fecha'] ?></td>
+                                <td><?php echo $row=$value['ect_saldo'] ?></td>
+                                </tr>
+                                <?php } ?>
+                                </table>
+                                                        
                         </div>
                     </div>
                 </div>
