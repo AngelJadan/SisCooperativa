@@ -52,7 +52,7 @@ class Cliente extends Conexion {
      * apellido del cliente, identificacion.
      */
     public function buscarCliente($cta){   
-        echo $cta;   
+        //echo $cta;   
         $sql="SELECT C.CLI_CUENTA_AHORROS,P.PER_NOMBRE,P.PER_APELLIDO,P.PER_IDENTIFICACION
         FROM CLIENTES C, USUARIOS U, PERSONAS P WHERE C.CLI_CUENTA_AHORROS='".$cta."' 
         AND C.USUARIOS_USU_USUARIO=U.USU_USUARIO AND U.PERSONAS_PER_IDENTIFICACION=P.PER_IDENTIFICACION;";

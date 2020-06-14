@@ -39,25 +39,30 @@
                             ?>
                             <table border="1">
                                 <tr>
-                                <th>Num Cuenta</th>
-                                <th>Usuario</th>
-                                <th>Ultimas Transacciones</th>
+                                <th>Número </th>
+                                <th>Tipo de transacción</th>
+                                <th>Fecha última transacción</th>
                                 <th>Saldo</th>
                                 </tr>
                                 <?php
                                 require_once "../../sistemaCooperativa/controlador/usuarios/realizarEstadoCuenta.php";
                                 $ect=new EstadoCuenta();
                                 
-                                foreach($ect->listarEstadoCuenta() as $key =>$value){
-
+                                $saldo=0;
+                                foreach($ect->listarEstadoCuenta($cliente) as $key =>$value){
+                                    $saldo=$value['ect_saldo'];
                                 ?>
                                 <tr>
-                                <td><?php echo $row=$value['cli_cuenta_ahorros'] ?></td>
-                                <td><?php echo $row=$value['usuarios_usu_usuario'] ?></td>
-                                <td><?php echo $row=$value['ect_fecha'] ?></td>
-                                <td><?php echo $row=$value['ect_saldo'] ?></td>
+                                <td><?php  echo $row=$value['ect_id'] ?></td>
+                                <td><?php  echo $row=$value['ect_tipo_operacion'] ?></td>
+                                <td><?php  echo $row=$value['ect_fecha'] ?></td>
+                                <td><?php  echo $row=$value['ect_saldo'] ?></td>
                                 </tr>
-                                <?php } ?>
+                                <?php 
+                                    } ?>
+                                <tr><td colspan="3">Saldo disponible</td> 
+                                <td><?php echo $saldo ?></td>
+                                </tr>
                                 </table>
                                                         
                         </div>

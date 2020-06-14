@@ -31,7 +31,7 @@ if($usuario==$usubd){
         header("Location: ../../../Publica/coperativa/InicioCajero.php?usuario=".$usuario);
     }if($tusu=="Administrador"){
         header("Location: ../../../Publica/coperativa/administrativos.php?usuario=".$usuario);
-    }if($tusu=="cliente"){
+    }if($tusu=="Cliente"){
         header("Location: ../../../Publica/coperativa/cajeroEstadoCuenta.php?usuario=".$usuario);
     }
 
