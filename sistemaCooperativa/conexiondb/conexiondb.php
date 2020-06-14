@@ -19,10 +19,10 @@ class Conexion{
         try{
             $this->conexion =   new PDO($consql,$this->user,$this->password);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            echo 'conectado';
+            //echo 'conectado';
         }catch(Exception $e){
             $this->conexion='Error de conexion';
-            echo "ERROR: ".$e->getMessage();
+            //echo "ERROR: ".$e->getMessage();
         }finally{
             return $this->conexion;
         }

@@ -38,12 +38,13 @@ $cajero=$_GET['cajero'];
                         </div>
                         <div>
                             <?php
+                            $cajero=$_GET["cajero"];
                             $cta=$_GET["cta"];
                             $nombre=$_GET["nombre"];
                             $apellido=$_GET["apellido"];
                             $cedula=$_GET["cedula"];
                             ?>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/realizarRet.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/realizarRet.php?cajero=<?php echo $cajero?>" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
                                     <tr></tr>
@@ -52,7 +53,7 @@ $cajero=$_GET['cajero'];
                                     <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido" value="<?php echo $apellido?>" readonly=»readonly»></td></tr>
                                     <tr><td><label>Cedula/Pasaporte:</label></td><td><input id="txtcedula" name="txtcedula" value="<?php echo $cedula?>" readonly=»readonly»></td></tr>
                                     <tr><td><label>Cedula/Pasaporte del beneficiario:</label></td><td><input id="txtcedulaBen" name="txtcedulaBen"></td></tr>
-                                    <tr><td><label>Nombre del beneficiario:</label></td><td><input id="txtnomDep" name="txtnomBen"></td></tr>
+                                    <tr><td><label>Nombre del beneficiario:</label></td><td><input id="txtnomBen" name="txtnomBen"></td></tr>
                                     <tr><td><label>Monto a retirar:</label></td><td><input id="txtmonto" name="txtmonto" ></td></tr>
                                     <tr><td><button type="submit" name="btnretirar" id="btnretirar">Retirar</button></td>
                                     <td><button type="submit" name="btncancelar" id="btncancelar">Cancelar</button></td></tr>
