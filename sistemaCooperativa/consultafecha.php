@@ -103,15 +103,15 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Detalle</th>
-                                <th>Deposito</th>
-                                <th>Retiros</th>
+                              <!--  <th>Deposito</th>
+                                <th>Retiros</th>-->
                                 <th>Saldo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php       $desde = $_POST['desde'];
                                         $hasta = $_POST['hasta'];
-                                        $query = "SELECT * FROM `datos_cuenta` WHERE fecha BETWEEN '$desde' AND '$hasta'";
+                                        $query = "SELECT * FROM `estadocuentas` WHERE   ect_fecha BETWEEN '$desde' AND '$hasta'";
                                         $result = mysqli_query($conn, $query);
 
                                          
@@ -119,11 +119,11 @@
                                         #Obtiene una fila de resultados como un array asociativo, numérico, o ambos
                             ?>
                             <tr>
-                                <td><?php echo $row['fecha'] ?></td>
-                                <td><?php echo $row['Detalle'] ?></td>
-                                <td><?php echo $row['Deposito'] ?></td>
-                                <td><?php echo $row['Retiros'] ?></td>
-                                <td><?php echo $row['Saldo'] ?></td>
+                                <td><?php echo $row['ect_fecha'] ?></td>
+                                <td><?php echo $row['ect_tipo_operacion'] ?></td>
+                              <!--  <td><?php echo $row['Deposito'] ?></td>
+                                <td><?php echo $row['Retiros'] ?></td>-->
+                                <td><?php echo $row['ect_saldo'] ?></td>
                             </tr>
                             <?php } ?>
                         </tbody>

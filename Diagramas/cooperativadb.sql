@@ -87,14 +87,14 @@ CREATE TABLE `cuotas` (
 --
 
 CREATE TABLE `depositos` (
-  `dep_id` decimal(10,0) NOT NULL,
-  `dep_iden_depositante` varchar(13) NOT NULL,
-  `dep_nombre_depositante1` varchar(250) NOT NULL,
-  `dep_monto` float NOT NULL,
-  `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL,
-  `usuarios_usu_usuario` varchar(50) NOT NULL,
-  `estadocuentas_ect_id` decimal(10,0) NOT NULL,
-  `dep_fecha` varchar NOT NULL
+  `dep_id` decimal(10,0) ,
+  `dep_iden_depositante` varchar(13) ,
+  `dep_nombre_depositante1` varchar(250) ,
+  `dep_monto` float ,
+  `clientes_cli_cuenta_ahorros` decimal(10,0) ,
+  `usuarios_usu_usuario` varchar(50),
+  `estadocuentas_ect_id` decimal(10,0),
+  `dep_fecha` varchar (13)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
