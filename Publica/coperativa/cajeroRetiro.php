@@ -33,7 +33,7 @@ $cajero=$_GET['cajero'];
                 <div class="cuerpo-W3vS2v anima-flexbox-container">
                     <div class="fondAdmi">
                         <div>
-                            <h1>Depositos: </h1>
+                            <h1>Retiros: </h1>
                             <h3>Cajero: <?php echo $cajero?></h3>
                         </div>
                         <div>

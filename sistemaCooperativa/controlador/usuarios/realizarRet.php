@@ -9,7 +9,6 @@ $nbeneficiario = htmlspecialchars($_POST['txtnomBen']);;
 $cbeneficiario = htmlspecialchars($_POST['txtcedulaBen']);;
 $monto = htmlspecialchars($_POST['txtmonto']);;
 $cajero = $_GET['cajero'];
-$estcta = 1;
 
 
     $cli=new Cliente();
@@ -29,12 +28,14 @@ $estcta = 1;
         $mes= date('m');
         $anio= date('yy');
         $fecha=$anio."/".$mes."/".$dia;
-        $idEstCta=$cli->consultaIdEstCta($fecha,"RETIRO",$nuevoSaldo,$cta);
+        //$idEstCta=$cli->consultaIdEstCta($fecha,"RETIRO",$nuevoSaldo,$cta);
+        $idEstCta=$cli->consultaEstCtaId($cta);
 
         $idEscta="";
         foreach($idEstCta as $key =>$value){
             $idEscta=$value["ECT_ID"];
         }
+        echo $idEscta;
         //echo $idEscta;
         //echo "cajero: ". $cajero;
         $resRet=$cli->retirarCliente($cbeneficiario,$monto,$cajero,$cta,$idEscta);

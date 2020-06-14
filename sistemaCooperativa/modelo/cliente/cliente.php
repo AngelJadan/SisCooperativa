@@ -18,11 +18,9 @@ class Cliente extends Conexion {
 
         //echo $insPer;
         $query=Conexion::conectar()->prepare($insPer);
-        $saldoInicial=0.00;
-        $regCta=crearEstadoCta($cta,"inicial",$saldoInicial);
         $mensaje="";
         if($query->execute()){
-            $mensaje="Guardado";
+            $mensaje=="Guardado";
         }else{
             $mensaje="Noguardado";
         }
@@ -32,7 +30,7 @@ class Cliente extends Conexion {
         $dia= date('d');
         $mes= date('m');
         $anio= date('yy');
-        $fecha=$dia."/".$mes."/".$anio;
+        $fecha=$anio."-".$mes."-".$dia;
         
         $insPer="INSERT INTO ESTADOCUENTAS VALUES(0,'".$fecha."','".$operacion."',".$saldo.",'".$cuenta."');";
         
@@ -88,7 +86,7 @@ class Cliente extends Conexion {
         $anio= date('yy');
         $fecha=$anio."-".$mes."-".$dia;
         
-        $insPer="INSERT INTO Retiros VALUES(1,'".$cbene."',".$monto
+        $insPer="INSERT INTO Retiros VALUES(0,'".$cbene."',".$monto
         .",'".$fecha."','".$cajero."',".$cta.",".$estCtaId.");";
 
         //  echo $insPer;
@@ -117,7 +115,7 @@ class Cliente extends Conexion {
         $anio= date('yy');
         $fecha=$anio."/".$mes."/".$dia;
         
-        $insPer="INSERT INTO EstadoCuentas  VALUES(3,'".$fecha."','".$opearacion
+        $insPer="INSERT INTO EstadoCuentas  VALUES(0,'".$fecha."','".$opearacion
         ."',".$nuevoSaldo.",'".$cta."');";
 
         //echo $insPer;
@@ -130,10 +128,22 @@ class Cliente extends Conexion {
         }
         return $mensaje;
     }
+    /**
+     * Este método busca el id del estado de cuenta.
+     * @param fecha del registro de la cuenta, $operacion: tipo INICIAL, DEPOSITO, RETIRO.
+     * 
+     */
     public function consultaIdEstCta($fecha,$operacion,$nuevoSaldo,$cta){
         $sql="SELECT ECT_ID FROM EstadoCuentas WHERE ect_fecha='".$fecha."' 
         AND ect_tipo_operacion='".$operacion."' AND ect_saldo=".$nuevoSaldo.
         " AND Clientes_cli_cuenta_ahorros='".$cta."';";
+        
+        $query=Conexion::conectar()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    public function consultaEstCtaId($cta){
+        $sql="SELECT ECT_ID FROM EstadoCuentas WHERE Clientes_cli_cuenta_ahorros='".$cta."';";
         
         $query=Conexion::conectar()->prepare($sql);
         $query->execute();

@@ -21,13 +21,12 @@ $password=$user->generarContrasenia();
 $resultado=$user->insertarUsuario($cedula,$nombre,$apellido,$rol,$correo,$telefono,$direccion,$password,$usuario);
 
 if($resultado=="Guardado"){
+    $user->enviarEmail($password,$correo,$usuario);
     if($rol=="Cliente"){
         header("Location: ../../../Publica/coperativa/regCliente.php?usuario=".$usuario."&nombre=".$nombre
         ."&apellido=".$apellido."&cedula=".$cedula);
     }else{
-        header("Location: ../../../Publica/coperativa/administrativos.php");
+        //header("Location: ../../../Publica/coperativa/administrativos.php");
     }
 }
-
-
 ?>

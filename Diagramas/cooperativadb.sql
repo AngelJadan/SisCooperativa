@@ -7,10 +7,10 @@
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+ SET AUTOCOMMIT = 0;
+ START TRANSACTION;
+ SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -29,12 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `acessos` (
-  `ace_id` decimal(10,0) NOT NULL,
+  `ace_id` INT AUTO_INCREMENT NOT NULL,
   `ace_fecha_intento` varchar(12) NOT NULL,
   `ace_tipo_acceso` varchar(20) NOT NULL,
   `ace_observaciones` varchar(250) DEFAULT NULL,
-  `usuarios_usu_usuario` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `usuarios_usu_usuario` varchar(50) NOT NULL,
+  PRIMARY KEY(ace_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -43,8 +44,8 @@ CREATE TABLE `acessos` (
 --
 
 CREATE TABLE `clientes` (
-  `cli_id` decimal(10,0) NOT NULL,
-  `cli_cuenta_ahorros` decimal(10,0) NOT NULL,
+  `cli_id` INT NOT NULL,
+  `cli_cuenta_ahorros` INT NOT NULL,
   `cli_fecha_registro` varchar(12) NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -56,14 +57,15 @@ CREATE TABLE `clientes` (
 --
 
 CREATE TABLE `creditos` (
-  `cre_id` decimal(10,0) NOT NULL,
-  `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL,
+  `cre_id` INT AUTO_INCREMENT NOT NULL,
+  `clientes_cli_cuenta_ahorros` INT NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL,
   `cre_tipo_amortizacion` varchar(20) NOT NULL,
   `cre_monto` float NOT NULL,
   `cre_plazo` varchar(25) NOT NULL,
-  `cre_numero_cuotas` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `cre_numero_cuotas` INT NOT NULL,
+  PRIMARY KEY(cre_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -72,13 +74,14 @@ CREATE TABLE `creditos` (
 --
 
 CREATE TABLE `cuotas` (
-  `cuo_id` decimal(10,0) NOT NULL,
+  `cuo_id` INT AUTO_INCREMENT NOT NULL,
   `cuo_fecha` date NOT NULL,
   `cuot_monto` float NOT NULL,
   `cuo_estado` varchar(20) NOT NULL,
-  `creditos_cre_id` decimal(10,0) NOT NULL,
-  `estadocuentas_ect_id` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `creditos_cre_id` INT NOT NULL,
+  `estadocuentas_ect_id` INT NOT NULL,
+  PRIMARY KEY(cuo_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -87,15 +90,16 @@ CREATE TABLE `cuotas` (
 --
 
 CREATE TABLE `depositos` (
-  `dep_id` decimal(10,0) NOT NULL,
+  `dep_id` INT AUTO_INCREMENT NOT NULL,
   `dep_iden_depositante` varchar(13) NOT NULL,
   `dep_nombre_depositante1` varchar(250) NOT NULL,
   `dep_monto` float NOT NULL,
-  `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL,
+  `clientes_cli_cuenta_ahorros` INT NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL,
-  `estadocuentas_ect_id` decimal(10,0) NOT NULL,
-  `dep_fecha` varchar NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `estadocuentas_ect_id` INT NOT NULL,
+  `dep_fecha` varchar(12) NOT NULL,
+  PRIMARY KEY(dep_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -104,12 +108,13 @@ CREATE TABLE `depositos` (
 --
 
 CREATE TABLE `estadocuentas` (
-  `ect_id` decimal(10,0) NOT NULL,
+  `ect_id` INT AUTO_INCREMENT NOT NULL,
   `ect_fecha` date NOT NULL,
   `ect_tipo_operacion` varchar(25) NOT NULL,
   `ect_saldo` float NOT NULL,
-  `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `clientes_cli_cuenta_ahorros` INT NOT NULL,
+  PRIMARY KEY(ect_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -118,7 +123,7 @@ CREATE TABLE `estadocuentas` (
 --
 
 CREATE TABLE `personas` (
-  `per_id` decimal(10,0) NOT NULL,
+  `per_id` INT NOT NULL,
   `per_identificacion` varchar(13) NOT NULL,
   `per_nombre` varchar(250) NOT NULL,
   `per_apellido` varchar(250) NOT NULL,
@@ -134,14 +139,15 @@ CREATE TABLE `personas` (
 --
 
 CREATE TABLE `retiros` (
-  `ret_id` decimal(10,0) NOT NULL,
+  `ret_id` INT AUTO_INCREMENT NOT NULL,
   `ret_identificacion_beneficiario` varchar(13) NOT NULL,
   `ret_monto` float NOT NULL,
   `ret_fecha` date NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL,
-  `clientes_cli_cuenta_ahorros` decimal(10,0) NOT NULL,
-  `estadocuentas_ect_id` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `clientes_cli_cuenta_ahorros` INT NOT NULL,
+  `estadocuentas_ect_id` INT NOT NULL,
+  PRIMARY KEY(ret_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -150,7 +156,7 @@ CREATE TABLE `retiros` (
 --
 
 CREATE TABLE `usuarios` (
-  `usu_id` decimal(10,0) NOT NULL,
+  `usu_id` INT,
   `usu_usuario` varchar(50) NOT NULL,
   `usu_password` varchar(50) NOT NULL,
   `usu_tipo_usuario` varchar(25) NOT NULL,
@@ -165,30 +171,30 @@ CREATE TABLE `usuarios` (
 --
 -- Indices de la tabla `acessos`
 --
-ALTER TABLE `acessos`
-  ADD PRIMARY KEY (`ace_id`),
+ ALTER TABLE `acessos`
+--  ADD PRIMARY KEY (`ace_id`),
   ADD KEY `acessos_usuarios_fk` (`usuarios_usu_usuario`);
 
 --
 -- Indices de la tabla `clientes`
 --
-ALTER TABLE `clientes`
+ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`cli_cuenta_ahorros`),
   ADD UNIQUE KEY `clientes__idx` (`usuarios_usu_usuario`);
 
 --
 -- Indices de la tabla `creditos`
 --
-ALTER TABLE `creditos`
-  ADD PRIMARY KEY (`cre_id`),
+ ALTER TABLE `creditos`
+--  ADD PRIMARY KEY (`cre_id`),
   ADD KEY `creditos_clientes_fk` (`clientes_cli_cuenta_ahorros`),
   ADD KEY `creditos_usuarios_fk` (`usuarios_usu_usuario`);
 
 --
 -- Indices de la tabla `cuotas`
 --
-ALTER TABLE `cuotas`
-  ADD PRIMARY KEY (`cuo_id`),
+ ALTER TABLE `cuotas`
+--  ADD PRIMARY KEY (`cuo_id`),
   ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`),
   ADD KEY `cuotas_estadocuentas_fk` (`estadocuentas_ect_id`);
 
@@ -196,7 +202,7 @@ ALTER TABLE `cuotas`
 -- Indices de la tabla `depositos`
 --
 ALTER TABLE `depositos`
-  ADD PRIMARY KEY (`dep_id`),
+--  ADD PRIMARY KEY (`dep_id`),
   ADD KEY `depositos_clientes_fk` (`clientes_cli_cuenta_ahorros`),
   ADD KEY `depositos_estadocuentas_fk` (`estadocuentas_ect_id`),
   ADD KEY `depositos_usuarios_fk` (`usuarios_usu_usuario`);
@@ -204,22 +210,21 @@ ALTER TABLE `depositos`
 --
 -- Indices de la tabla `estadocuentas`
 --
-ALTER TABLE `estadocuentas`
-  ADD PRIMARY KEY (`ect_id`),
+ ALTER TABLE `estadocuentas`
+  -- ADD PRIMARY KEY (`ect_id`),
   ADD KEY `estadocuentas_clientes_fk` (`clientes_cli_cuenta_ahorros`);
 
 --
 -- Indices de la tabla `personas`
 --
-ALTER TABLE `personas`
-  ADD PRIMARY KEY (`per_identificacion`);
+ ALTER TABLE `personas`
+	ADD PRIMARY KEY (`per_identificacion`);
 
 --
 -- Indices de la tabla `retiros`
 --
 ALTER TABLE `retiros`
-  ADD PRIMARY KEY (`ret_id`),
-  ADD UNIQUE KEY `retiros_ret_identificacion_beneficiario_un` (`ret_identificacion_beneficiario`),
+  -- ADD PRIMARY KEY (`ret_id`),
   ADD KEY `retiros_clientes_fk` (`clientes_cli_cuenta_ahorros`),
   ADD KEY `retiros_estadocuentas_fk` (`estadocuentas_ect_id`),
   ADD KEY `retiros_usuarios_fk` (`usuarios_usu_usuario`);
@@ -229,7 +234,7 @@ ALTER TABLE `retiros`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usu_usuario`),
-  ADD UNIQUE KEY `usuarios__idx` (`personas_per_identificacion`);
+  ADD UNIQUE KEY `usuarios__id` (`personas_per_identificacion`);
 
 --
 -- Restricciones para tablas volcadas
@@ -257,9 +262,9 @@ ALTER TABLE `creditos`
 --
 -- Filtros para la tabla `cuotas`
 --
-ALTER TABLE `cuotas`
-  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`),
-  ADD CONSTRAINT `cuotas_estadocuentas_fk` FOREIGN KEY (`estadocuentas_ect_id`) REFERENCES `estadocuentas` (`ect_id`);
+	ALTER TABLE `cuotas`
+	  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`),
+	  ADD CONSTRAINT `cuotas_estadocuentas_fk` FOREIGN KEY (`estadocuentas_ect_id`) REFERENCES `estadocuentas` (`ect_id`);
 
 --
 -- Filtros para la tabla `depositos`
@@ -293,3 +298,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
