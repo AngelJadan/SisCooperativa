@@ -6,6 +6,7 @@ require_once "../../modelo/accesos.php";
 $usuario = htmlspecialchars($_POST['txtusuario']);
 $password = htmlspecialchars($_POST['txtpassword']);
 
+
 $user=new Usuario();
 $acc=new accesoModelo();
 
@@ -27,6 +28,9 @@ if($usuario==$usubd){
  * revisa que tipo de usuario es y redirecciona a cada directorio
  */
 if($usuario==$usubd){
+    session_start();
+    $_SESSION["usuario"]=$usuario;
+    
     if($tusu=="Cajero"){
         header("Location: ../../../Publica/coperativa/InicioCajero.php?usuario=".$usuario);
     }if($tusu=="Administrador"){
@@ -34,9 +38,14 @@ if($usuario==$usubd){
     }if($tusu=="Cliente"){
         header("Location: ../../../Publica/coperativa/cajeroEstadoCuenta.php?usuario=".$usuario);
     }
-
 }else{
-    echo "usuario o clave incorrecta";
+    //echo "usuario o clave incorrecta";
+    ?>
+    <script type="text/javascript">
+    window.alert("Usuario o contraseña incorrectos");
+    window.location.href="../../../Publica/coperativa/login.html";
+    </script>
+    <?php
 }
 
 

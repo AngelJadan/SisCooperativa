@@ -27,7 +27,7 @@
                     <div class="rectangle-4c20WX">
                     </div>
                     <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/login.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/login.php" method="POST" name="formulario" id="formulario">
                             <table>
                                 <tbody>
                                     <tr><td><label for="Usuario">Usuario:</label> </td>
@@ -36,20 +36,46 @@
 
                                     <tr>
                                         <td><label for="Password">Password:</label></td>
-                                        <td><input type="txtpassword" id="txtpassword" name="txtpassword"></td>
+                                        <td><input type="password" id="txtpassword" name="txtpassword"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button type="submit" id="btnlogin">Login</button></td>
+                                        <td colspan="2"><button type="submit" id="btnlogin" onclick="validaUsuPass()">Login</button></td>
                                     </tr>
+                                    <script type="text/javascript">
+                                    (
+                                        function(){
+                                            var formulario = document.getElementsByName("formulario")[0];
+                                            var elementos=formulario.getElements;
+                                            var boton = document.getElementById("btnlogin");
+
+                                            var validaUser = function(e){
+                                                if(formulario.txtusuario.value==0){
+                                                    alert("Debe ingresar un usuario");
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaPassword=function(e){
+                                                if(formulario.txtpassword.value==0){
+                                                    alert("Debe ingresar una contraseña");
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validar = function(e){
+                                                validaUser(e);
+                                                validaPassword(e);
+                                            }
+                                            formulario.addEventListener("submit", validar);
+                                        }()
+                                    )
+                                    </script>
                                     <tr>
                                         <td>
-                                            <button type="submit" name="recuperarContra">Recuperar</button>
+                                            <a href="url">Recuperar contraseña</a>
                                         <td>
                                     </tr>
                                 </tbody>
                             </table>
                         </form>
-
                     <div class="auto-flex-Fgfaak anima-flexbox-container">
                            
                         
@@ -118,6 +144,7 @@
                 </div>
             </div>
         </div>
+        <!-- "" -->
         <!-- Scripts -->
         <!-- End of Scripts -->
     </body>
