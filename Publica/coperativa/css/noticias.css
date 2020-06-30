@@ -1,0 +1,545 @@
+
+
+/* .anima-animate-appear prefix for appear animations */
+.anima-animate-appear {
+  opacity             : 0;
+  display             : block;
+  animation           : anima-reveal 0.3s ease-in-out 1 normal forwards;
+}
+.anima-animate-disappear {
+  opacity             : 1;
+  display             : block;
+  animation           : anima-reveal 0.3s ease-in-out 1 reverse forwards;
+}
+.anima-animate-nodelay {
+  animation-delay     : 0s;
+}
+@keyframes anima-reveal {
+  from {
+    opacity             : 0;
+  }
+  to {
+    opacity             : 1;
+  }
+}
+* {
+  box-sizing          : border-box;
+}
+a {
+  text-decoration     : none;
+}
+.anima-flexbox-container a {
+  line-height         : 0;
+}
+.anima-component-wrapper,
+.anima-component-wrapper * {
+  pointer-events      : none;
+}
+.anima-component-wrapper a *,
+.anima-component-wrapper a,
+.anima-component-wrapper input,
+.anima-component-wrapper video,
+.anima-component-wrapper iframe,
+.anima-listeners-active,
+.anima-listeners-active * {
+  pointer-events      : auto;
+}
+.anima-hidden,
+.anima-hidden * {
+  visibility          : hidden;
+  pointer-events      : none;
+}
+.anima-smart-layers-pointers,
+.anima-smart-layers-pointers * {
+  pointer-events      : auto;
+  visibility          : visible;
+}
+.anima-component-wrapper.anima-not-ready,
+.anima-component-wrapper.anima-not-ready * {
+  visibility          : hidden !important;
+}
+.anima-listeners-active-click,
+.anima-listeners-active-click * {
+  cursor              : pointer;
+}
+.anima-component-wrapper a,
+.anima-screen a {
+  text-decoration     : none;
+}
+.anima-flexbox-container a {
+  line-height         : 0;
+}
+.anima-full-width-a {
+  width               : 100%;
+}
+.anima-full-height-a {
+  height              : 100%;
+}
+.anima-screen textarea:focus,
+.anima-screen input:focus {
+  outline             : none;
+}
+.anima-screen div {
+  -webkit-text-size-adjust: none;
+}
+.anima-container-center-vertical,
+.anima-container-center-horizontal {
+  pointer-events      : none;
+  display             : flex;
+  flex-direction      : row;
+  padding             : 0;
+  margin              : 0;
+}
+.anima-container-center-vertical {
+  align-items         : center;
+  height              : 100%;
+}
+.anima-container-center-horizontal {
+  justify-content     : center;
+  width               : 100%;
+}
+.anima-container-center-vertical > *,
+.anima-container-center-horizontal > * {
+  pointer-events      : auto;
+  flex-shrink         : 0;
+}
+.anima-component-wrapper ,
+.anima-screen {
+  overflow-wrap       : break-word;
+  word-wrap           : break-word;
+  word-break          : break-all;
+  word-break          : break-word;
+}
+.anima-auto-animated div {
+  opacity             : 0;
+  position            : absolute;
+  --anima-z-index: -1;
+}
+/* ANIMA screen - noticias */
+.font-class-1 {
+  font-family         : "LucidaGrande", Helvetica, Arial, serif;
+}
+.font-class-2 {
+  font-family         : "LucidaGrande-Bold", Helvetica, Arial, serif;
+  font-size           : 36.0px;
+  line-height         : 43.0px;
+}
+.font-class-3 {
+  color               : var(--auto-palette-color-1);
+  font-family         : "AvenirNext-Medium", Helvetica, Arial, serif;
+  font-size           : 21.0px;
+  line-height         : 29.0px;
+}
+:root {
+  --auto-palette-color-1: rgba(255,255,255,1.0);
+  --auto-palette-color-2: rgba(150,150,150,1.0);
+  --auto-palette-color-3: rgba(37,57,75,1.0);
+  --auto-palette-color-4: rgba(215,215,215,1.0);
+  --auto-palette-color-5: rgba(95,120,140,1.0);
+}
+.noticias .overlap-group-Y7zamN {
+  background-color    : rgba(255,255,255,0);
+  flex-shrink         : 0;
+  height              : 299px;
+  position            : relative;
+  width               : 1440px;
+}
+.noticias .overlap-group1-CQ8Pk1 {
+  align-self          : flex-end;
+  background-color    : rgba(255,255,255,0);
+  flex-shrink         : 0;
+  height              : 212px;
+  position            : relative;
+  width               : 742px;
+}
+.noticias .overlap-group2-rQ4F4A {
+  background-color    : rgba(255,255,255,0);
+  flex-shrink         : 0;
+  height              : 244px;
+  margin-left         : 25px;
+  position            : relative;
+  width               : 743px;
+}
+.noticias .auto-flex-1lKxzb {
+  align-items         : flex-start;
+  align-self          : center;
+  background-color    : rgba(255,255,255,0);
+  box-sizing          : border-box;
+  display             : inline-flex;
+  flex-direction      : row;
+  flex-shrink         : 0;
+  height              : 240px;
+  justify-content     : flex-start;
+  margin-left         : 145.0px;
+  margin-top          : 0px;
+  position            : relative;
+  width               : auto;
+}
+.noticias .auto-flex1-t5q8Pb {
+  align-items         : flex-start;
+  background-color    : rgba(255,255,255,0);
+  box-sizing          : border-box;
+  display             : inline-flex;
+  flex-direction      : row;
+  flex-shrink         : 0;
+  height              : 262px;
+  justify-content     : flex-start;
+  margin-right        : 26.0px;
+  margin-top          : 45px;
+  position            : relative;
+  width               : auto;
+}
+.noticias .rectangle-a2K4Hw {
+  background-color    : rgba(255,255,255,0);
+  height              : 95px;
+  left                : 0px;
+  position            : absolute;
+  top                 : 118px;
+  transform           : rotate(0deg);
+  width               : 1440px;
+}
+.noticias .rectangle-x3RRNp {
+  background-color    : rgba(255,255,255,0);
+  cursor              : pointer;
+  height              : 95px;
+  left                : 0px;
+  position            : absolute;
+  top                 : 119px;
+  transform           : rotate(0deg);
+  width               : 174px;
+}
+.noticias .inico-061c6C {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 41px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 151px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-eNgWOe {
+  background-color    : rgba(255,255,255,0);
+  cursor              : pointer;
+  height              : 95px;
+  left                : 174px;
+  position            : absolute;
+  top                 : 119px;
+  transform           : rotate(0deg);
+  width               : 190px;
+}
+.noticias .nosotros-QApAyD {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 215px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 151px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-xa3KPS {
+  background-color    : rgba(255,255,255,0);
+  cursor              : pointer;
+  height              : 93px;
+  left                : 782px;
+  position            : absolute;
+  top                 : 120px;
+  transform           : rotate(0deg);
+  width               : 174px;
+}
+.noticias .contactanos-AIsTDE {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 796px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 150px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-juhGru {
+  background-color    : rgba(255,255,255,0);
+  cursor              : pointer;
+  height              : 95px;
+  left                : 622px;
+  position            : absolute;
+  top                 : 118px;
+  transform           : rotate(0deg);
+  width               : 160px;
+}
+.noticias .noticias-HKEha3 {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 659px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 153px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-IVbNGR {
+  background-color    : rgba(255,255,255,0);
+  cursor              : pointer;
+  height              : 95px;
+  left                : 364px;
+  position            : absolute;
+  top                 : 119px;
+  transform           : rotate(0deg);
+  width               : 258px;
+}
+.noticias .productos-y-servicio-nIxO8K {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 369px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 152px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .whats-app-image-2020-05-14-at-8-07-51-pm-uRDkke {
+  background-color    : rgba(255,255,255,0);
+  height              : 118px;
+  left                : 1288px;
+  position            : absolute;
+  top                 : 0px;
+  transform           : rotate(0deg);
+  width               : 132px;
+}
+.noticias .boton-WcYvxW {
+  align-items         : flex-start;
+  background-color    : rgba(255,255,255,0);
+  background-image    : url(".././img/noticias-rectangle-7@2x.png");
+  background-size     : 100% 100%;
+  box-sizing          : border-box;
+  cursor              : pointer;
+  display             : inline-flex;
+  flex-direction      : row;
+  height              : 103px;
+  justify-content     : flex-end;
+  left                : 1258px;
+  min-width           : 182px;
+  padding             : 21.0px 20.0px;
+  position            : absolute;
+  top                 : 116px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .coprerativa-virtual-TxQrCN {
+  background-color    : rgba(255,255,255,0);
+  flex-shrink         : 0;
+  height              : auto;
+  min-height          : 58px;
+  position            : relative;
+  text-align          : center;
+  transform           : rotate(0deg);
+  width               : 141px;
+}
+.noticias .rectangle-EAAUXE {
+  align-self          : flex-end;
+  background-color    : var(--auto-palette-color-4);
+  border-color        : var(--auto-palette-color-2);
+  border-style        : solid;
+  border-width        : 1.0px;
+  flex-shrink         : 0;
+  height              : 261px;
+  position            : relative;
+  transform           : rotate(0deg);
+  width               : 356px;
+}
+.noticias .rectangle-eulQ7b {
+  background-color    : rgba(255,255,255,0);
+  height              : 208px;
+  left                : 0px;
+  position            : absolute;
+  top                 : 3px;
+  transform           : rotate(0deg);
+  width               : 742px;
+}
+.noticias .u201c-nuestra-raz-363n-de-se-hwb9dz {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-5);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 5px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : left;
+  top                 : 35px;
+  transform           : rotate(0deg);
+  width               : 708px;
+}
+.noticias .farmas-de-haorar-5Bo8wI {
+  background-color    : rgba(255,255,255,0);
+  color               : rgba(72,95,115,1.0);
+  height              : auto;
+  left                : 4px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 0px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-6nQinW {
+  background-color    : var(--auto-palette-color-4);
+  border-color        : var(--auto-palette-color-2);
+  border-style        : solid;
+  border-width        : 1.0px;
+  flex-shrink         : 0;
+  height              : 238px;
+  margin-left         : 8px;
+  position            : relative;
+  transform           : rotate(0deg);
+  width               : 365px;
+}
+.noticias .rectangle-V0VPGW {
+  background-color    : rgba(255,255,255,0);
+  height              : 244px;
+  left                : 1px;
+  position            : absolute;
+  top                 : 0px;
+  transform           : rotate(0deg);
+  width               : 742px;
+}
+.noticias .u201c-seremos-un-banco-ce-Acyix0 {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-5);
+  font-size           : 24.0px;
+  height              : auto;
+  left                : 0px;
+  line-height         : 28.0px;
+  position            : absolute;
+  text-align          : right;
+  top                 : 45px;
+  transform           : rotate(0deg);
+  width               : 717px;
+}
+.noticias .nuevo-UNLxin {
+  background-color    : rgba(255,255,255,0);
+  color               : rgba(53,72,89,1.0);
+  height              : auto;
+  left                : 2px;
+  position            : absolute;
+  text-align          : left;
+  text-decoration     : underline;
+  top                 : 2px;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .rectangle-p6bHfG {
+  background-color    : rgba(255,255,255,0);
+  height              : 85px;
+  left                : 461px;
+  position            : absolute;
+  top                 : 214px;
+  transform           : rotate(0deg);
+  width               : 708px;
+}
+.noticias .noticias-N9keKI {
+  background-color    : rgba(255,255,255,0);
+  color               : rgba(94,119,141,1.0);
+  height              : auto;
+  left                : 599px;
+  position            : absolute;
+  text-align          : center;
+  top                 : 233px;
+  transform           : rotate(0deg);
+  width               : 400px;
+}
+.noticias {
+  align-items         : flex-end;
+  background-color    : var(--auto-palette-color-1);
+  box-sizing          : border-box;
+  display             : flex;
+  flex-direction      : column;
+  height              : auto;
+  justify-content     : flex-start;
+  min-height          : 1024px;
+  overflow            : hidden;
+  position            : relative;
+  width               : 1440.0px;
+}
+.noticias .pie-de-pagina-dtfXso {
+  align-items         : flex-start;
+  background-color    : var(--auto-palette-color-3);
+  border-color        : var(--auto-palette-color-2);
+  border-style        : solid;
+  border-width        : 1.0px;
+  box-sizing          : border-box;
+  display             : flex;
+  flex-direction      : column;
+  flex-shrink         : 0;
+  height              : auto;
+  justify-content     : flex-start;
+  margin-top          : 49px;
+  min-height          : 129px;
+  padding             : 20.0px 413.0px;
+  position            : relative;
+  transform           : rotate(0deg);
+  width               : 1440px;
+}
+.noticias .cooperativa-progres-3E6yx3 {
+  align-self          : center;
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  flex-shrink         : 0;
+  font-size           : 24.0px;
+  height              : auto;
+  line-height         : 28.0px;
+  margin-right        : 24.0px;
+  min-height          : 28px;
+  min-width           : 372px;
+  position            : relative;
+  text-align          : center;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .todos-los-derechos-r-88lQJw {
+  background-color    : rgba(255,255,255,0);
+  color               : var(--auto-palette-color-1);
+  flex-shrink         : 0;
+  font-size           : 24.0px;
+  height              : auto;
+  line-height         : 28.0px;
+  margin-top          : 17px;
+  min-height          : 28px;
+  min-width           : 559px;
+  position            : relative;
+  text-align          : center;
+  transform           : rotate(0deg);
+  width               : auto;
+}
+.noticias .encabesado-GFmZzZ {
+  background-color    : rgba(255,255,255,0);
+  height              : 219px;
+  left                : 0px;
+  position            : absolute;
+  top                 : 0px;
+  transform           : rotate(0deg);
+  width               : 1440px;
+}
+.noticias .rectangle-jJMkB4 {
+  background-color    : rgba(255,255,255,0);
+  height              : 118px;
+  left                : 0px;
+  position            : absolute;
+  top                 : 0px;
+  transform           : rotate(0deg);
+  width               : 1440px;
+}
