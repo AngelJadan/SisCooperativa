@@ -1,6 +1,6 @@
 <?php
 $cajero=$_GET["cajero"];
-echo $cajero;
+//echo $cajero;
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,7 @@ echo $cajero;
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
         <link href="./css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/cajero.css" rel="stylesheet" type="text/css"/>
         <meta content="AnimaApp.com - Design to code, Automated." name="author">
         </meta>
     </head>
@@ -40,8 +41,8 @@ echo $cajero;
                         <form action="../../sistemaCooperativa/controlador/usuarios/depositar.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td>Cajero: <?php echo $cajero?></td></tr>
-                                    <tr><td>Numero de Cuenta:</td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>
+                                    <tr><td> <label class="nCajero">Cajero: <?php echo $cajero?></label></td></tr>
+                                    <tr><td> <label class="numeroCuenta"> Número de Cuenta:</label></td><td><input id="txtcta" name="txtcta"></td><td><button type="submit" name="buscar" id="buscar">Buscar</button></td></tr>
                                 </tbody>
                             </table>
                             </form>
@@ -87,7 +88,7 @@ echo $cajero;
                             <img class="rectangle-6CDbpr" src="./img/noticias-rectangle-7@2x.png"/>
                         </a>
                         <div class="coprerativa-virtual-mH4mCL font-class-3">
-                            Cerrar <br />Sesión
+                        <a href="../../sistemaCooperativa/controlador/usuarios/cerrarSesion.php">Cerrar<br />Sesión</a>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,8 @@
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
         <link href="./css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/administrativos.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="./js/validacionusuario.js"></script>
         <meta content="AnimaApp.com - Design to code, Automated." name="author">
         </meta>
     </head>
@@ -33,25 +35,28 @@
                             <h1>Bienvenido: </h1>
                         </div>
                         <div>
-                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarUsu.php" method="POST">
+                        <form action="../../sistemaCooperativa/controlador/usuarios/registrarUsu.php" method="POST" name="formDatos" id="formDatos">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula"></td></tr>
-                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td></tr>
-                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td></tr>
+                                    <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula" onkeyup="cedula()" ></td><td><label id="vcedula" name="vcedula"></label></td></tr>
+                                    <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td><td><label id="vnombre"name="vnombre"></label></td></tr>
+                                    <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td><td><label id="vapellido" name="vapellido"></label></td></tr>
                                     <tr><td><label>Rol</label></td><td><select name="cboxrol">
                                                                                     <option value="Administrador">Administrador</option> 
                                                                                     <option value="Cajero" selected>Cajero</option>
                                                                                     <option value="Cliente">Cliente</option>
                                                                                     <option value="Asesor">Asesor de crédito</option>
-                                                                        </select></td></tr>
-                                    <tr><td><label>Correo:</label></td><td><input id="txtcorreo" name="txtcorreo"></td></tr>
-                                    <tr><td><label>Teléfono:</label></td><td><input id="txttelefono" name="txttelefono"></td></tr>
-                                    <tr><td><label>Direccion:</label></td><td><input id="txtdireccion" name="txtdireccion"></td></tr>
-                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario"></td></tr>
+                                                                        </select></td><td></td></tr>
+                                    <tr><td><label>Correo:</label></td><td><input id="txtcorreo" name="txtcorreo" onkeyup="validaCorreo()"></td><td><label id="vcorreo" name="vcorreo"></label></td></tr>
+                                    <tr><td><label>Teléfono:</label></td><td><input id="txttelefono" name="txttelefono"></td><td><label id="vtelefono" name="vtelefono"></label></td></tr>
+                                    <tr><td><label>Direccion:</label></td><td><input id="txtdireccion" name="txtdireccion"></td><td><label id="vdireccion" name="vdireccion"></label></td></tr>
+                                    <tr><td><label>Usuario:</label></td><td><input id="txtusuario" name="txtusuario"></td><td> <label id="vusuario" name="usuario"></label></td></tr>
                                     <tr><td><button type="submit" name="registrar" id="registrar">Registrar</button></td>
-                                    <td><button type="submit" name="actualizar" id="actualizar">Actualizar</button>
-                                    <button type="submit" name="cancelar" id="cancelar">Cancelar</button></td></tr>
+                                    <td><button type="submit" name="actualizar" id="actualizar">Actualizar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><input type="button" onclick="limpiarFormulario()" value="Limpiar formulario"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             </form>
@@ -97,7 +102,7 @@
                             <img class="rectangle-6CDbpr" src="./img/noticias-rectangle-7@2x.png"/>
                         </a>
                         <div class="coprerativa-virtual-mH4mCL font-class-3">
-                            Coprerativa <br />Virtual
+                            <a href="../../sistemaCooperativa/controlador/usuarios/cerrarSesion.php">Cerrar<br />Sesión</a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +125,87 @@
                 </div>
             </div>
         </div>
-        <!-- Scripts -->
-        <!-- End of Scripts -->
+        <script type="text/javascript">
+                                    (
+                                        function(){
+                                            var formulario = document.getElementsByName("formDatos")[0];
+                                            var elementos=formulario.getElements;
+                                            var boton = document.getElementById("registrar");
+
+                                            var validaCedula = function(e){
+                                                if(formulario.txtcedula.value<10||formulario.txtcedula.value>10){
+                                                    formulario.txtcedula.style.color="red";
+                                                    e.preventDefault();
+                                                }if(formulario.txtcedula.style.color=="red"){
+                                                    e.preventDefault();
+                                                }if(formulario.txtcedula.value<1){
+                                                    formulario.txtcedula.value="*";
+                                                    formulario.txtcedula.style.color="red";
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaNombre = function(e){
+                                                if(formulario.txtnombre.value<1){
+                                                    formulario.txtnombre.value="*";
+                                                    formulario.txtnombre.style.color="red";
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaApellido = function(e){
+                                                if(formulario.txtapellido.value.length<1){
+                                                    formulario.txtapellido.value="*";
+                                                    formulario.txtapellido.style.color="red";
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaCorreo = function(e){
+                                                if(formulario.txtcorreo.value.length<1){
+                                                    formulario.txtcorreo.value="*";
+                                                    formulario.txtcorreo.style.color="red";
+                                                    e.preventDefault();
+                                                }if(formulario.txtcorreo.style.color=="red"){
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaTelefono = function(e){
+                                                if(formulario.txttelefono.value.length<1){
+                                                    formulario.txttelefono.value="*";
+                                                    formulario.txttelefono.style.color="red";
+                                                    e.preventDefault();
+                                                }if(formulario.txttelefono.style.color=="red"){
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaDireccion = function(e){
+                                                if(formulario.txtdireccion.value.length<1){
+                                                    formulario.txtdireccion.value="*";
+                                                    formulario.txtdireccion.style.color="red";
+                                                    e.preventDefault();
+                                                }if(formulario.txtdireccion.style.color=="red"){
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validaUsuario = function(e){
+                                                if(formulario.txtusuario.value.length<1){
+                                                    formulario.txtusuario.value="*";
+                                                    formulario.txtusuario.style.color="red";
+                                                    e.preventDefault();
+                                                }if(formulario.txtusuario.style.color=="red"){
+                                                    e.preventDefault();
+                                                }
+                                            }
+                                            var validar = function(e){
+                                                validaCedula(e);
+                                                validaNombre(e);
+                                                validaApellido(e);
+                                                validaCorreo(e);
+                                                validaTelefono(e);
+                                                validaDireccion(e);
+                                                validaUsuario(e);
+                                            }
+                                            formulario.addEventListener("submit", validar);
+                                        }()
+                                    )
+                                    </script>
     </body>
 </html>

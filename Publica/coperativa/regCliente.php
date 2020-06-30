@@ -14,6 +14,7 @@ $cedula=$_GET['cedula'];
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
         <link href="./css/inicio.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="/js/validacionusuario.js"></script>
         <meta content="AnimaApp.com - Design to code, Automated." name="author">
         </meta>
     </head>
