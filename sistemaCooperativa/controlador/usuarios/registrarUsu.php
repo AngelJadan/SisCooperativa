@@ -20,9 +20,7 @@ $password=$user->generarContrasenia();
 //echo "pas: ".$password;
 $resultado=$user->insertarUsuario($cedula,$nombre,$apellido,$rol,$correo,$telefono,$direccion,$password,$usuario);
 
-<<<<<<< HEAD
 echo $resultado;
-=======
 if($resultado=="Guardado"){
     $user->enviarEmail($password,$correo,$usuario);
     if($rol=="Cliente"){
@@ -32,5 +30,4 @@ if($resultado=="Guardado"){
         //header("Location: ../../../Publica/coperativa/administrativos.php");
     }
 }
->>>>>>> master
 ?>
