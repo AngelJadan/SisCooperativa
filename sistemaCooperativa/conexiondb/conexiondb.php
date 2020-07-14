@@ -5,7 +5,7 @@ class Conexion{
         private $host     =   'localhost';
         private $db       =   'cooperativadb';
         private $user     =   'root';
-        private $password =   '';
+        private $password =   'WEcl0105801567';
 
     //public static function conectar(){
       // $pdo_options[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
