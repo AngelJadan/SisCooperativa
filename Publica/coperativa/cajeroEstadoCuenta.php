@@ -33,10 +33,12 @@
                             <h1>Estado de Cuenta: </h1>
                         </div>
                         <div>
+                            
                             <?php
                                 $cliente = $_GET["usuario"];
                                 echo"<h2>Bienvenido: $cliente</h2>";
                             ?>
+                            <div class="contenedorTablas">
                             <table border="1">
                                 <tr>
                                 <th>Número </th>
@@ -64,7 +66,9 @@
                                 <td><?php echo $saldo ?></td>
                                 </tr>
                                 </table>
-                                                        
+                            </div>
+                            <div>hola</div>
+                                                          
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ $usuario=$_GET["usuario"];
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
         <link href="./css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/cajero.css" rel="stylesheet" type="text/css"/>
         <meta content="AnimaApp.com - Design to code, Automated." name="author">
         </meta>
     </head>
@@ -39,8 +40,8 @@ $usuario=$_GET["usuario"];
                         <form action="../../sistemaCooperativa/controlador/usuarios/depositar.php" method="POST">
                             <table class="tablaRegUsu">
                                 <tbody>
-                                    <tr><td><a href="cajerobusCta.php?cajero=<?php echo $usuario?>">Depositos</a></td><td></td></tr>
-                                    <tr><td><a href="cajerobusCtaRet.php?cajero=<?php echo $usuario?>">Retiros</a></td><td></td></tr>
+                                    <tr><td><a class="btntransaccion" id="btndeposito" name="btndeposito" href="cajerobusCta.php?cajero=<?php echo $usuario?>">Depositos</a></td><td></td></tr>
+                                    <tr><td><a class="btntransaccion" id="btnretiro" name="btnretiro" href="cajerobusCtaRet.php?cajero=<?php echo $usuario?>">Retiros</a></td><td></td></tr>
                                 </tbody>
                             </table>
                             </form>
@@ -86,7 +87,7 @@ $usuario=$_GET["usuario"];
                             <img class="rectangle-6CDbpr" src="./img/noticias-rectangle-7@2x.png"/>
                         </a>
                         <div class="coprerativa-virtual-mH4mCL font-class-3">
-                            Cerrar <br />Sesión
+                        <a href="../../sistemaCooperativa/controlador/usuarios/cerrarSesion.php">Cerrar<br />Sesión</a>
                         </div>
                     </div>
                 </div>
