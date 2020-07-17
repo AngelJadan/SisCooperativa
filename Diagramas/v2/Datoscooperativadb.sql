@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-07-2020 a las 08:57:49
+-- Tiempo de generación: 17-07-2020 a las 02:51:00
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -86,7 +86,11 @@ INSERT INTO `acessos` (`ace_id`, `ace_fecha_intento`, `ace_tipo_acceso`, `ace_ob
 (52, '27/06/2020', 'Cajero', 'conectado', 'CAJERO1'),
 (53, '11/07/2020', 'Administrador', 'conectado', 'AJADAN'),
 (54, '11/07/2020', 'Administrador', 'conectado', 'AJADAN'),
-(55, '11/07/2020', 'Administrador', 'conectado', 'AJADAN');
+(55, '11/07/2020', 'Administrador', 'conectado', 'AJADAN'),
+(56, '14/07/2020', 'Administrador', 'conectado', 'AJADAN'),
+(57, '15/07/2020', 'Administrador', 'conectado', 'AJADAN'),
+(58, '15/07/2020', 'Cajero', 'conectado', 'CAJERO1'),
+(59, '15/07/2020', 'Cliente', 'conectado', 'cliente1');
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,9 @@ CREATE TABLE `datos_creditos` (
   `Personas_per_identificacion` varchar(13) NOT NULL,
   `dcr_copia_cedula` varchar(250) NOT NULL,
   `dcr_copia_planilla` varchar(250) NOT NULL,
-  `dcr_copia_rol` varchar(250) NOT NULL
+  `dcr_copia_rol` varchar(250) NOT NULL,
+  `dcr_estado` varchar(50) NOT NULL,
+  `dcr_tipo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -192,7 +198,8 @@ INSERT INTO `depositos` (`dep_id`, `dep_iden_depositante`, `dep_nombre_depositan
 (1, '154654', 'juan', 10, 1, 'AJADAN', 1, '12/06/2020'),
 (2, '154654', 'juan', 20, 1, 'AJADAN', 1, '12/06/2020'),
 (3, '15151', 'depo', 15, 2, 'AJADAN', 1, '15/06/2020'),
-(4, '4511', 'depo', 15, 1, 'AJADAN', 1, '15/06/2020');
+(4, '4511', 'depo', 15, 1, 'AJADAN', 1, '15/06/2020'),
+(5, '154654', 'juan', 30, 1, 'AJADAN', 1, '15/07/2020');
 
 -- --------------------------------------------------------
 
@@ -227,7 +234,8 @@ INSERT INTO `estadocuentas` (`ect_id`, `ect_fecha`, `ect_tipo_operacion`, `ect_s
 (16, '2020-06-15', 'DEPOSITO', 17, 2),
 (17, '2020-06-15', 'RETIRO', 12, 2),
 (18, '2020-06-15', 'DEPOSITO', 20, 1),
-(19, '2020-06-15', 'RETIRO', 19, 1);
+(19, '2020-06-15', 'RETIRO', 19, 1),
+(20, '2020-07-15', 'DEPOSITO', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -240,6 +248,15 @@ CREATE TABLE `localidades` (
   `loc_nombre` varchar(250) NOT NULL,
   `Localidades_loc_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `localidades`
+--
+
+INSERT INTO `localidades` (`loc_id`, `loc_nombre`, `Localidades_loc_id`) VALUES
+(1, 'ECUADOR', 0),
+(2, 'AZUAY', 1),
+(3, 'CUENCA', 2);
 
 -- --------------------------------------------------------
 
@@ -441,7 +458,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `acessos`
 --
 ALTER TABLE `acessos`
-  MODIFY `ace_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ace_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `creditos`
@@ -459,13 +476,13 @@ ALTER TABLE `cuotas`
 -- AUTO_INCREMENT de la tabla `depositos`
 --
 ALTER TABLE `depositos`
-  MODIFY `dep_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `dep_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `estadocuentas`
 --
 ALTER TABLE `estadocuentas`
-  MODIFY `ect_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ect_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `retiros`
