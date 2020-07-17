@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2020 a las 02:32:54
+-- Tiempo de generación: 17-07-2020 a las 02:51:00
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -133,9 +133,7 @@ CREATE TABLE `creditos` (
   `cre_plazo` varchar(25) NOT NULL,
   `cre_numero_cuotas` int(11) NOT NULL,
   `cre_estado` varchar(15) NOT NULL,
-  `Datos_creditos_dcr_id` int(11) NOT NULL,
-  `dcr_estado` varchar(50) NOT NULL,
-  `dcr_Tipo` varchar(100) NOT NULL
+  `Datos_creditos_dcr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -170,7 +168,9 @@ CREATE TABLE `datos_creditos` (
   `Personas_per_identificacion` varchar(13) NOT NULL,
   `dcr_copia_cedula` varchar(250) NOT NULL,
   `dcr_copia_planilla` varchar(250) NOT NULL,
-  `dcr_copia_rol` varchar(250) NOT NULL
+  `dcr_copia_rol` varchar(250) NOT NULL,
+  `dcr_estado` varchar(50) NOT NULL,
+  `dcr_tipo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
