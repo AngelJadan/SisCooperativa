@@ -33,6 +33,16 @@ class Usuario extends Conexion {
         $query->execute();
         return $query->fetchAll();
     }
+    public function buscarPersona($docu){
+        $sql="SELECT * FROM PERSONAS WHERE per_identificacion='".$docu."'";
+        $query=Conexion::conectar()->prepare($sql);
+        $result=$query->execute();
+        if(empty($result)){
+            die('Consulta sin resultados');
+        }else{
+            return $query->fetchAll();
+        }
+    }
 
     public function generarContrasenia(){
         $caracteres='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -61,5 +71,6 @@ class Usuario extends Conexion {
 				
 				sendemail($mail_username,$mail_userpassword,$mail_setFromEmail,$mail_setFromName,$mail_addAddress,$txt_message,$mail_subject,$template);//Enviar el mensaje
     }
+    
 }
 ?>
