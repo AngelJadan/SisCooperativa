@@ -35,8 +35,4 @@ class Conexion{
 }
 $conec=new Conexion();
 //$conec->conectar();
-<<<<<<< HEAD
-=======
-
->>>>>>> Wilson
 ?>
