@@ -27,8 +27,8 @@
                         Todos los derechos reservados | Ecuador 2020
                     </div>
                 </div>
-                <div class="cuerpo-W3vS2v anima-flexbox-container">
-                    <div class="fondAdmi">
+                <div class="cuerpo-W3vS2v anima-flexbox-container" style="border: solid;">
+                    <div class="fondAdmi" style="border: solid;">
                         <div>
                             <h1>Estado de Cuenta: </h1>
                         </div>
@@ -38,7 +38,7 @@
                                 $cliente = $_GET["usuario"];
                                 echo"<h2>Bienvenido: $cliente</h2>";
                             ?>
-                            <div class="contenedorTablas">
+
                             <table border="1">
                                 <tr>
                                 <th>Número </th>
@@ -66,10 +66,33 @@
                                 <td><?php echo $saldo ?></td>
                                 </tr>
                                 </table>
-                            </div>
-                            <div>hola</div>
                                                           
                         </div>
+                    </div>
+                    <div>
+                    <?php
+                                $cliente = $_GET["usuario"];
+                            ?>
+
+                            <table border="1">
+                                <tr>
+                                <th>Fecha</th>
+                                </tr>
+                                <?php
+                                require_once "../../sistemaCooperativa/controlador/usuarios/realizarEstadoCuenta.php";
+                                $ect=new EstadoCuenta();
+                                
+                                foreach($ect->listarAccesos($cliente) as $key =>$value){
+                                ?>
+                                <tr>
+                                <td><?php  echo $row=$value['ace_fecha_intento'] ?></td>
+                                
+                                </tr>
+                                <?php 
+                                    } ?>
+                                
+                                </tr>
+                                </table>
                     </div>
                 </div>
                 <div class="encabesado-jjxew7">
