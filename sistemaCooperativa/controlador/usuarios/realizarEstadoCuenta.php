@@ -15,5 +15,13 @@ class EstadoCuenta extends Conexion{
         return $query->fetchAll();
 
     }
+
+    public function listarAccesos($cliente){
+        $sql = "select ace_fecha_intento from acessos where usuarios_usu_usuario='".$cliente."'";
+        $query=Conexion::conectar()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+
+    }
 }
 ?>
