@@ -340,6 +340,14 @@ ALTER TABLE `Creditos`
 ALTER TABLE `Creditos`
 	ADD `Datos_creditos_dcr_id` INT NOT NULL;
 	
+	
+ALTER TABLE `Creditos`
+	ADD `dcr_estado` VARCHAR(50) NOT NULL;
+	
+ALTER TABLE `Creditos`
+	ADD `dcr_Tipo` VARCHAR(100) NOT NULL;
+	
+	
 ---
 --- Fk 
 ---
