@@ -39,18 +39,40 @@
                             <h1 class="titulo" name="solicitudCredito" id="solicitudCredito">Crédito en linea</h1>
                         </div>
                         <div class="tabla" style="width: 500px; height: 600px; overflow-y: scroll;">
-                            <form name="formCred" id="formCred" method="POST">
+                            <form name="formCred" id="formCred" method="POST" onsubmit="return mySubmitFunction(event)" >
                                 <table class="table table-bordered table-sm">
                                     <tbody>
-                                        <caption>
-                                            <label>Datos solicitante</label>
-                                        </caption>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center; font-weight: 25px; font-family: Verdana, Geneva, Tahoma, sans-serif;background-color: lightblue;">
+                                                <label>Datos solicitante</label>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td class="textoderecha">
                                                 <label>¿Es socio?</label>
                                             </td>
                                             <td>
                                                 <input name="cboxsocio" id="cboxsocio" type="checkbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Tipo de Crédito</label>
+                                            </td>
+                                            <td>
+                                                <select name="cboxtipoc" id="cboxtipoc">
+                                                    <option id="1" value="1">Seleccionar</option>
+                                                    <option id="2" value="2">Vivienda</option>
+                                                    <option id="3" value="3">Consumo</option>
+                                                    <option id="4" value="4">Vehiculo</option>
+                                                    <option id="5" value="5">Tecnologia</option>
+                                                    <option id="6" value="6">Electrodomesticos</option>
+                                                    <option id="7" value="7">Reparaciones</option>
+                                                    <option id="8" value="8">Educación</option>
+                                                    <option id="9" value="9">Vacaciones</option>
+                                                    <option id="10" value="10" >Capacitación</option>
+                                                    <option id="11" value="11">Otros</option>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>
@@ -90,6 +112,31 @@
                                         </tr>
                                         <tr>
                                             <td class="textoderecha">
+                                                <label>Sexo</label>
+                                            </td>
+                                            <td>
+                                                <select id="cboxsexo" name="cboxsexo">
+                                                    <option value="sseleccionar">Seleccionar</option>
+                                                    <option value="smasculino">Masculino</option>
+                                                    <option value="sfemenino">Femenino</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Estado civil</label>
+                                            </td>                                            
+                                            <td>
+                                                <select name="ecivil" id="ecivil">
+                                                    <option value="ecselecinar">Selecionar</option>
+                                                    <option value="ecsolt">Solter@</option>
+                                                    <option value="eccas">Casad@</option>
+                                                    <option value="ecdiv">Divorciad@</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
                                                 <label>Email</label>
                                             </td>
                                             <td>
@@ -117,7 +164,9 @@
                                                 <label>Provincia</label>
                                             </td>
                                             <td>
-                                                <input name="txtprovincia" id="txtprovincia" placeholder="(*)">
+                                                <select name="cboxprovincia" id="cboxprovincia" onclick="lisCiu()">
+                                                    <option>Seleccionar</option>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>
@@ -125,7 +174,9 @@
                                                 <label >Ciudad</label>
                                             </td>
                                             <td>
-                                                <input name="txtciudad" placeholder="(*)">
+                                                <select name="cboxciudad" id="cboxciudad">
+                                                    <option>Seleccionar</option>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>
@@ -176,10 +227,41 @@
                                                 <input name="txtingresos" id="txtingresos" placeholder="(*)">
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center">
+                                                <hr style="width:100%;">
+                                                <label>Datos de crédito</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Avaluó vivienda</label>
+                                            </td>
+                                            <td>
+                                                <input id="txtavaluo" name="txtavaluo">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Montó a solicitar</label>
+                                            </td>
+                                            <td>
+                                                <input id="txtmonto" name="txtmonto" type="number" min="1">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Plazo de crédito</label>
+                                            </td>
+                                            <td>
+                                                <input id="txtplazo" name="txtplazo" type="number" min="1" max="60">
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" value="enviar" id="btnenviar">Enviar</button>
-                                <button>Limpiar</button>
+                                <button value="enviar" name="btnlimpiar" id="btnenviar" onclick="validarCampos()">Enviar</button>
+                                <button value="limpiar" name="btnlimpiar" id="btnlimpiar" onclick="clearDatC()">Limpiar</button>
                             </form>
                         </div>
                     </div>

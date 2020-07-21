@@ -123,14 +123,14 @@ CREATE TABLE `estadocuentas` (
 --
 
 CREATE TABLE `personas` (
-  `per_id` INT NOT NULL,
+  `per_id` INT AUTO_INCREMENT NOT NULL,
   `per_identificacion` varchar(13) NOT NULL,
   `per_nombre` varchar(250) NOT NULL,
   `per_apellido` varchar(250) NOT NULL,
   `per_telefono` varchar(50) NOT NULL,
   `per_direccion` varchar(250) NOT NULL,
   `per_correo` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -219,6 +219,7 @@ CREATE TABLE `Datos_creditos`(
 --  ADD PRIMARY KEY (`cuo_id`),
   ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`),
   ADD KEY `cuotas_estadocuentas_fk` (`estadocuentas_ect_id`);
+ 
 
 --
 -- Indices de la tabla `depositos`
@@ -257,6 +258,7 @@ ALTER TABLE `retiros`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usu_usuario`),
   ADD UNIQUE KEY `usuarios__id` (`personas_per_identificacion`);
+ 
 
 --
 -- Restricciones para tablas volcadas
@@ -321,12 +323,13 @@ ALTER TABLE `usuarios`
 ---
 ALTER TABLE `Localidades`
 	ADD PRIMARY KEY(`loc_id`);
-
+ALTER TABLE Localidades MODIFY loc_id INTEGER NOT NULL AUTO_INCREMENT
 ---
 ---primary datos_creditos datos_creditos
 ---
 ALTER TABLE `Datos_creditos`
 	ADD PRIMARY KEY (`dcr_id`);
+ALTER TABLE Datos_Creditos MODIFY dcr_id INTEGER NOT NULL AUTO_INCREMENT;
 	
 ---
 ---Alter para agregar columna de 
@@ -339,15 +342,28 @@ ALTER TABLE `Creditos`
 ---
 ALTER TABLE `Creditos`
 	ADD `Datos_creditos_dcr_id` INT NOT NULL;
-	
-	
 ALTER TABLE `Creditos`
+	ADD `cre_interes_p` INT NOT NULL;
+ALTER TABLE `Creditos`
+	ADD `cre_interes` INT NOT NULL;
+ALTER TABLE `Creditos`
+	ADD `cre_total` INT NOT NULL;
+	
+	
+ALTER TABLE `Datos_Creditos`
 	ADD `dcr_estado` VARCHAR(50) NOT NULL;
 	
-ALTER TABLE `Creditos`
-	ADD `dcr_Tipo` VARCHAR(100) NOT NULL;
+ALTER TABLE `Datos_Creditos`
+	ADD `dcr_tipo` VARCHAR(100) NOT NULL;
 	
-	
+ALTER TABLE `Personas`
+	ADD `per_sexo`VARCHAR(10) NOT NULL;
+ALTER TABLE `Personas`
+	ADD `per_tipo_documento` VARCHAR(20) NOT NULL;
+ALTER TABLE `Personas`
+	ADD `per_estado_civil` VARCHAR(20) NOT NULL;
+
+
 ---
 --- Fk 
 ---

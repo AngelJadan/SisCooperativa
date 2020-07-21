@@ -81,6 +81,7 @@ function validaCedula() {
                   document.getElementById("txtemail2").value=(obj.correo).toLowerCase();
                   document.getElementById("txttelefono").value = obj.telefono;
                   document.getElementById("txtdireccion").value=obj.direccion;
+                  document.getElementById("cboxsocio").checked = true;
               });
           }
       })
@@ -92,4 +93,81 @@ function validaCedula() {
     document.getElementById("txtemail2").value="";
     document.getElementById("txttelefono").value = "";
     document.getElementById("txtdireccion").value="";
+    document.getElementById("cboxsocio").checked = false;
   }
+
+  function lisProv(){
+    var busqueda="1";
+    
+    $.ajax({
+        url:'../../../sistemaCooperativa/controlador/credito/provincia.php',
+        type:'POST',
+        data:{busqueda},
+        success:  function(response){
+            let obj = JSON.parse(response);
+            
+            obj.forEach(obj => {
+                var option=$(document.createElement('option'));
+                option.text(obj.nombre);
+                option.val(obj.nombre);
+                $("#cboxprovincia").append(option);
+            });
+        }
+    })
+  }
+  window.onload = lisProv();
+  function lisCiu(){
+    document.getElementById('cboxciudad').innerText = "Seleccionar";
+    var selec=document.getElementById("cboxprovincia").value;
+    $.ajax({
+        url:'../../../sistemaCooperativa/controlador/credito/ciudades.php',
+        type:'POST',
+        data:{selec},
+        success:  function(response){
+            let obj = JSON.parse(response);
+            
+            obj.forEach(obj => {
+                var option=$(document.createElement('option'));
+                option.text(obj.nombre);
+                option.val(obj.nombre);
+                $("#cboxciudad").append(option);
+            });
+        }
+    })
+  }
+function mySubmitFunction(e){
+    e.preventDefault();
+}
+
+function validarCampos(){
+    var socio = document.getElementById("cboxsocio").checked;
+    var tCredito = document.getElementById("cboxtipoc").value;
+    var tIden = document.getElementById("iden").value;
+    var doc = document.getElementById("txtdocumento").value;
+    var nombre = $("#txtnombre").value;
+    var apellido = $("#txtapellido").value;
+    var sexo = $("#cboxsexo").value;
+    var ecivil = $("#ecivil").value;
+    var email1 = $("#txtemail1").value;
+    var email2 = $("#txtemail2").value;
+    var telefono = $("#txttelefono").value;
+    var provincia = $("#cboxprovincia").value;
+    var ciudad = $("#cboxciudad").value;
+    var direccion = $("#txtdireccion").value;
+    var actividad = $("#txtactividad").value;
+    var empresa = $("#txtempresa").value;
+    var dempresa = $("#txtdiremp").value;
+    var aempresa = $("#txtactividademp").value;
+    var ingresos = $("#txtingresos").value;
+    var avaluo = $("#txtavaluo").value;
+    var monto = $("#txtmonto").value;
+    var plazo = $("#txtmonto").value;
+
+    if(socio!=false && tCredito!="Seleccionar" && tIden!="Seleccionar"
+    &&doc.length>0 && nombre.length>0 && apellido.length>0 &&sexo!="Seleccionar" && ecivil!="Seleccionar" 
+    &&email1>0 && email2>0 && telefono.length>0 && provincia!="Seleccionar"&&ciudad!="Seleccionar"&&direccion.length>0
+    &&actividad.length>0 && empresa.length>0 && dempresa.length>0 && aempresa.length>0 && ingresos.length>0
+    &&avaluo.length>0 && monto.length>0 && parseFloat(monto)>0 && plazo>0 && parseInt(plazo)>0){
+    }else{
+    }
+}
