@@ -3,15 +3,6 @@ include_once 'ciudad.php';
 include_once '../../modelo/persona.php';
 
 class Credito {
-    //private $tipoDocumento;
-    //private $documento;
-    //private $nombre;
-    //private $apellido;
-    //private $sexo;
-    //private $email;
-    //private $telefono;
-    //private $estadoCivil;
-    //private $direccion;
 
     private $tipoCredito;
     private $actLaboral;
@@ -31,6 +22,18 @@ class Credito {
 
     private $ciudad;
     private $persona;
+
+    private $tAmortizacion;
+    private $nCuotas;
+
+    private $tasa;
+    private $interes;
+    private $total;
+
+    private $garante;
+    private $proposito;
+    private $edad;
+
     public function __construct()
     {
         $this->ciudad=new Localidad();
@@ -43,60 +46,6 @@ class Credito {
     public function setTipoCredito($tCredito){
         $this->tipoCredito=$tCredito;
     }
-    /*public function getTipoDocumeto(){
-        return $this->tipoDocumento;
-    }
-    public function setTipoDocumento($tDocumento){
-        $this->tipoDocumento=$tDocumento;
-    }
-    public function setDocumento($documento){
-        $this->documento=$documento;
-    }
-    public function getDocumento(){
-        return $this->documento;
-    }
-    public function setNombre($nombre){
-        $this->nombre=$nombre;
-    }
-    public function getNombre(){
-        return $this->nombre;
-    }
-    public function setApellido($apellido){
-        $this->apellido=$apellido;
-    }
-    public function getApllido(){
-        return $this->apellido;
-    }
-    public function setSexo($sexo){
-        $this->sexo=$sexo;
-    }
-    public function getSexo(){
-        return $this->sexo;
-    }
-    public function setEstCivil($estadoCivil){
-        $this->estadoCivil=$estadoCivil;
-    }
-    public function getEstadoCivil(){
-        return $this->estadoCivil;
-    }
-    public function setEmail($email){
-        $this->email=$email;
-    }
-    public function getEmail(){
-        return $this->email;
-    }
-    public  function setDireccion($direccion){
-        $this->direccion=$direccion;
-    }
-    public function getDireccion(){
-        return $this->direccion;
-    }
-    public function setTelefono($telefono){
-        $this->telefono=$telefono;
-    }
-    public function getTelefono(){
-        return $this->telefono;
-    }*/
     public function setActLaboral($actLaboral){
         $this->actLaboral=$actLaboral;
     }
@@ -186,6 +135,54 @@ class Credito {
     }
     public function getEstado(){
         return $this->estado;
+    }
+    public function setTamortizacion($tAmortizacion){
+        $this->tAmortizacion=$tAmortizacion;
+    }
+    public function getTamortizacion(){
+        return $this->tAmortizacion;
+    }
+    public function setNcuotas($nCuotas){
+        $this->nCuotas=$nCuotas;
+    }
+    public function getNcuotas(){
+        return $this->nCuotas;
+    }
+    public function setTasa($tasa){
+        $this->tasa=$tasa;
+    }
+    public function getTasa(){
+        return $this->tasa;
+    }
+    public function setInteres($interes){
+        $this->interes=$interes;
+    }
+    public function getInteres(){
+        return $this->interes;
+    }
+    public function setTotal($total){
+        $this->total=$total;
+    }
+    public function getTotal(){
+        return $this->total;
+    }
+    public function setGarante($garante){
+        $this->garante=$garante;
+    }
+    public function getGarante(){
+        return $this->garante;
+    }
+    public function setProposito($proposito){
+        $this->proposito=$proposito;
+    }
+    public function getProposito(){
+        return $this->proposito;
+    }
+    public function setEdad($edad){
+        $this->edad=$edad;
+    }
+    public function getEdad(){
+        return $this->edad;
     }
 }
 ?>

@@ -1,17 +1,14 @@
-import numpy as np
 import pandas as pd
-import seaborn as sb
-import matplotlib.pyplot as plt
-#matplotlib inline
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-plt.rcParams['figure.figsize'] = (16, 9)
-plt.style.use('ggplot')
+import numpy as np
 from sklearn import linear_model
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn import model_selection
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+import seaborn as sb
 
-#cargamos los datos de entrada
-data = pd.read_csv("datos.csv")
-data.shape
-data.head()
-data.describe()
+dataframe = pd.read_csv(r"datos.csv")
+dataframe.head()
+	
+dataframe.describe()

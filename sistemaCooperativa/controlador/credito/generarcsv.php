@@ -13,9 +13,9 @@ $fila="DNI".$sep."PLAZOMESES".$sep."HISTORIALCREDITO".$sep."PROPOSITOCREDITO".$s
 ."TASAPAGO".$sep."ESTADOCIVILYSEXO".$sep."GARANTE".$sep."AVALUO".$sep."ACTIVOS".$sep."ESTADO".$sep."CREDITOSEXISTENTES".$sep."EMPLEO".$sep
 ."RESULTADO".$csvfin;
 foreach($datos as $key=>$value){
-    $id=$value["identificacion"];
-    $ecivil=$value["estadocivil"];
-    $sexo=$value["sexo"];
+    $id=$value["per_identificacion"];
+    $ecivil=$value["per_estado_civil"];
+    $sexo=$value["per_sexo"];
     if($ecivil=="Divorsiad@"&&$sexo=="Masculino"){
         $ecivil="A91";
     }if($ecivil=="Divorad@"||$ecivil=="Casad@"&&$sexo=="Femenino"){
@@ -27,11 +27,11 @@ foreach($datos as $key=>$value){
     if($ecivil=="Solter@"&&$sexo=="Masculino"){
         $ecivil="A93";
     }
-    $tAct=$value["tiempo"];
-    $ingreso=$value["ingreso"];
-    $tCredito=$value["tipo"];
+    $tAct=$value["cre_tiempo_empleo"];
+    $ingreso=$value["cre_ingreso"];
+    $tCredito=$value["cre_tipo"];
     $resMon=$con->sumaMonto($id);
-    $estado=$value["estado"];
+    $estado=$value["cre_estado"];
     foreach($resMon as $key1=>$value1){
         $monto=$value1["monto"];
     }
@@ -61,7 +61,7 @@ foreach($datos as $key=>$value){
     if($tCredito=="Capacitación"){
         $tCredito="A48";
     }
-    $empleo=$value["empleo"];
+    $empleo=$value["cre_act_laboral"];
     $pla=$con->ncuotas($id);
     foreach($pla as $key1=>$value1){
         $plazo=$value1["cuotas"];

@@ -36,24 +36,74 @@
                             <h1>Reporte de creditos solicitados </h1>
                         </div>
                         <div>
-                            <table id="tblreporte">
+                            <button type="button" onclick="agregarFila()">Consultar creditos</button>
+                            <button onclick="leerCsv()">Analisis de datos</button>
+                            <table >
                                 <thead>
                                     <tr>
                                         <td>
-                                            <label>DNI</label>
+                                            <label>N°</label>
                                         </td>
                                         <td>
-                                            <label>Nombre</label>
+                                            <label>Iden.</label>
                                         </td>
                                         <td>
-                                            <label>Apellido</label>
+                                            <label>Amortización</label>
                                         </td>
                                         <td>
-                                            <label>Acción</label>
+                                            <label>Montó</label>
+                                        </td>
+                                        <td>
+                                            <label>Plazo</label>
+                                        </td>
+                                        <td>
+                                            <label>Cuotas</label>
+                                        </td>
+                                        <td>
+                                            <label>Estado</label>
+                                        </td>
+                                        <td>
+                                            <label>Interes</label>
+                                        </td>
+                                        <td>
+                                            <label>Tasa</label>
+                                        </td>
+                                        <td>
+                                            <label>Actividad</label>
+                                        </td>
+                                        <td>
+                                            <label>Empresa</label>
+                                        </td>
+                                        <td>
+                                            <label>Dir. Empresa</label>
+                                        </td>
+                                        <td>
+                                            <label>T. Laboral</label>
+                                        </td>
+                                        <td>
+                                            <label>Ingresos</label>
+                                        </td>
+                                        <td>
+                                            <label>Tipo</label>
+                                        </td>
+                                        <td>
+                                            <label>Proposito</label>
+                                        </td>
+                                        <td>
+                                            <label>Avaluo</label>
+                                        </td>
+                                        <td>
+                                            <label>Garante</label>
+                                        </td>
+                                        <td>
+                                            <label>Edad</label>
+                                        </td>
+                                        <td>
+                                            <label>Total</label>
                                         </td>
                                     </tr>
                                 </thead>
-                                <tbody >
+                                <tbody id="tblreporte" name="tblreporte" >
                                 </tbody>
                             </table>
                         </div>

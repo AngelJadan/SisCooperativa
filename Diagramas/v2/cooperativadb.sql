@@ -58,12 +58,28 @@ CREATE TABLE `clientes` (
 
 CREATE TABLE `creditos` (
   `cre_id` INT AUTO_INCREMENT NOT NULL,
-  `clientes_cli_cuenta_ahorros` INT NOT NULL,
-  `usuarios_usu_usuario` varchar(50) NOT NULL,
   `cre_tipo_amortizacion` varchar(20) NOT NULL,
-  `cre_monto` float NOT NULL,
-  `cre_plazo` varchar(25) NOT NULL,
-  `cre_numero_cuotas` INT NOT NULL,
+  `cre_monto` float(12,2) NOT NULL,
+  `cre_plazo` INT(2) NOT NULL,
+  `cre_numero_cuotas` INT(2) NOT NULL,
+  `cre_estado` VARCHAR(50) NOT NULL,
+  `cre_interes` FLOAT(12,2) NOT NULL,
+  `cre_intereses_p` FLOAT(12,2) NOT NULL,
+  `cre_act_laboral` VARCHAR(250) NOT NULL,
+  `cre_empresa` VARCHAR(250) NOT NULL,
+  `cre_dir_empresa` VARCHAR(250) NOT NULL,
+  `cre_tiempo_empleo` INT NOT NULL,
+  `cre_ingreso` FLOAT(12,2) NOT NULL,
+  `cre_tipo` VARCHAR(20) NOT NULL,
+  `cre_proposito` VARCHAR(250) NOT NULL,
+  `cre_avaluo` FLOAT(12,2) NOT NULL,
+  `cre_garante`	VARCHAR(50) NOT NULL,
+  `cre_copia_cedula`	VARCHAR(250),
+  `cre_copia_planilla` VARCHAR(250),
+  `cre_copia_rol` VARCHAR(250),
+  `cre_edad` INT NOT NULL,
+  `Personas_per_identificacion` varchar(50) NOT NULL,
+  `Localidades_loc_id` INT NOT NULL,
   PRIMARY KEY(cre_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
@@ -75,11 +91,13 @@ CREATE TABLE `creditos` (
 
 CREATE TABLE `cuotas` (
   `cuo_id` INT AUTO_INCREMENT NOT NULL,
-  `cuo_fecha` date NOT NULL,
-  `cuot_monto` float NOT NULL,
-  `cuo_estado` varchar(20) NOT NULL,
+  `cuo_monto` float NOT NULL,
   `creditos_cre_id` INT NOT NULL,
   `estadocuentas_ect_id` INT NOT NULL,
+  `cuo_numero` INT  NOT NULL,
+  `cuo_fecha_vencimiento` date not null,
+  `cuo_fecha_pago` date,
+  `cuo_estado` VARCHAR(20) NOT NULL,
   PRIMARY KEY(cuo_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
@@ -111,6 +129,7 @@ CREATE TABLE `estadocuentas` (
   `ect_id` INT AUTO_INCREMENT NOT NULL,
   `ect_fecha` date NOT NULL,
   `ect_tipo_operacion` varchar(25) NOT NULL,
+  `ect_monto` float(12,2) NOT NULL,
   `ect_saldo` float NOT NULL,
   `clientes_cli_cuenta_ahorros` INT NOT NULL,
   PRIMARY KEY(ect_id)
@@ -174,22 +193,6 @@ CREATE TABLE `Localidades`(
 	`loc_nombre` VARCHAR(250) NOT NULL,
 	`Localidades_loc_id` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-----------------------------
-----------Nueva tabla de datos-crditos--------------
-CREATE TABLE `Datos_creditos`(
-	`dcr_id` INT NOT NULL,
-	`dcr_act_laboral` VARCHAR(250) NOT NULL,
-	`dcr_empresa` VARCHAR(250) NOT NULL,
-	`dcr_dir_empresa` VARCHAR(250) NOT NULL,
-	`dcr_tiempo`	INT NOT NULL,
-	`dcr_ingreso`	INT	NOT NULL,
-	`Localidades_loc_id` INT NOT NULL,
-	`Personas_per_identificacion` VARCHAR(13)	NOT NULL,
-	`dcr_copia_cedula` VARCHAR(250) NOT NULL,
-	`dcr_copia_planilla`	VARCHAR(250) NOT NULL,
-	`dcr_copia_rol`	VARCHAR(250)	NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Indices de la tabla `acessos`
 --
@@ -209,16 +212,15 @@ CREATE TABLE `Datos_creditos`(
 --
  ALTER TABLE `creditos`
 --  ADD PRIMARY KEY (`cre_id`),
-  ADD KEY `creditos_clientes_fk` (`clientes_cli_cuenta_ahorros`),
-  ADD KEY `creditos_usuarios_fk` (`usuarios_usu_usuario`);
+  ADD KEY `personas_personas_fk` (`Personas_per_identificacion`),
+  ADD KEY `localidades_localidades_fk` (`Localidades_loc_id`);
 
 --
 -- Indices de la tabla `cuotas`
 --
  ALTER TABLE `cuotas`
 --  ADD PRIMARY KEY (`cuo_id`),
-  ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`),
-  ADD KEY `cuotas_estadocuentas_fk` (`estadocuentas_ect_id`);
+  ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`);
  
 
 --
@@ -280,15 +282,14 @@ ALTER TABLE `clientes`
 -- Filtros para la tabla `creditos`
 --
 ALTER TABLE `creditos`
-  ADD CONSTRAINT `creditos_clientes_fk` FOREIGN KEY (`clientes_cli_cuenta_ahorros`) REFERENCES `clientes` (`cli_cuenta_ahorros`),
-  ADD CONSTRAINT `creditos_usuarios_fk` FOREIGN KEY (`usuarios_usu_usuario`) REFERENCES `usuarios` (`usu_usuario`);
+  ADD CONSTRAINT `personas_personas_fk` FOREIGN KEY (`personas_per_identificacion`) REFERENCES `personas` (`per_identificacion`),
+  ADD CONSTRAINT `localidades_localidades_fk` FOREIGN KEY (`Localidades_loc_id`) REFERENCES `Localidades` (`loc_id`);
 
 --
 -- Filtros para la tabla `cuotas`
 --
 	ALTER TABLE `cuotas`
-	  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`),
-	  ADD CONSTRAINT `cuotas_estadocuentas_fk` FOREIGN KEY (`estadocuentas_ect_id`) REFERENCES `estadocuentas` (`ect_id`);
+	  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`);
 
 --
 -- Filtros para la tabla `depositos`
@@ -324,37 +325,7 @@ ALTER TABLE `usuarios`
 ALTER TABLE `Localidades`
 	ADD PRIMARY KEY(`loc_id`);
 ALTER TABLE Localidades MODIFY loc_id INTEGER NOT NULL AUTO_INCREMENT
----
----primary datos_creditos datos_creditos
----
-ALTER TABLE `Datos_creditos`
-	ADD PRIMARY KEY (`dcr_id`);
-ALTER TABLE Datos_Creditos MODIFY dcr_id INTEGER NOT NULL AUTO_INCREMENT;
 	
----
----Alter para agregar columna de 
----
-ALTER TABLE `Creditos`
-	ADD `cre_estado` VARCHAR(15) NOT NULL;
-
-------
---- Alter para agregar nueva columna de Datos_creditos_dcr_id 
----
-ALTER TABLE `Creditos`
-	ADD `Datos_creditos_dcr_id` INT NOT NULL;
-ALTER TABLE `Creditos`
-	ADD `cre_interes_p` INT NOT NULL;
-ALTER TABLE `Creditos`
-	ADD `cre_interes` INT NOT NULL;
-ALTER TABLE `Creditos`
-	ADD `cre_total` INT NOT NULL;
-	
-	
-ALTER TABLE `Datos_Creditos`
-	ADD `dcr_estado` VARCHAR(50) NOT NULL;
-	
-ALTER TABLE `Datos_Creditos`
-	ADD `dcr_tipo` VARCHAR(100) NOT NULL;
 	
 ALTER TABLE `Personas`
 	ADD `per_sexo`VARCHAR(10) NOT NULL;
@@ -363,26 +334,6 @@ ALTER TABLE `Personas`
 ALTER TABLE `Personas`
 	ADD `per_estado_civil` VARCHAR(20) NOT NULL;
 
-
----
---- Fk 
----
-ALTER TABLE `Creditos`
-	ADD CONSTRAINT `Datos_creditos_dcr_id_fk` FOREIGN KEY(`Datos_creditos_dcr_id`) REFERENCES `Datos_creditos`(`dcr_id`);
-	
----
---- Fk Datos_creditos
----
-ALTER TABLE `Datos_creditos`
-	ADD	 CONSTRAINT `Localidades_loc_id_fk` FOREIGN KEY(`Localidades_loc_id`) REFERENCES `Localidades`(`loc_id`);
-
-
-	
----
---- fk Datos_creditos persona fk
----
-ALTER TABLE `Datos_creditos`
-	ADD CONSTRAINT `Personas_per_identificacion_fk` FOREIGN KEY(`Personas_per_identificacion`) REFERENCES `Personas`(`per_identificacion`);
 
 COMMIT;
 

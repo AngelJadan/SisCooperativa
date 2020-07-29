@@ -52,7 +52,7 @@
                                                 <label>¿Es socio?</label>
                                             </td>
                                             <td>
-                                                <input name="cboxsocio" id="cboxsocio" type="checkbox">
+                                                <input name="cboxsocio" id="cboxsocio" type="checkbox" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -99,7 +99,7 @@
                                                 <label name="lblpnombre" id="lblpnombre" >Nombres</label>
                                             </td>
                                             <td>
-                                                <input name="txtnombre" id="txtnombre" type="text" placeholder="(*)">
+                                                <input name="txtnombre" id="txtnombre" type="text" placeholder="(*)" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -107,7 +107,7 @@
                                                 <label name="lblpapellido" id="lblpapellido">Apellidos</label>
                                             </td>
                                             <td>
-                                                <input name="txtapellido" id="txtapellido" type="text" placeholder="(*)">
+                                                <input name="txtapellido" id="txtapellido" type="text" placeholder="(*)" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,10 +137,18 @@
                                         </tr>
                                         <tr>
                                             <td class="textoderecha">
+                                                <label>Edad</label>
+                                            </td>
+                                            <td>
+                                                <input style="width: 40px;;" id="txtedad" name="txtedad" type="number" min="18" >
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
                                                 <label>Email</label>
                                             </td>
                                             <td>
-                                                <input name="txtemail1" id="txtemail1" type="email" placeholder="(*)">
+                                                <input name="txtemail1" id="txtemail1" type="email" placeholder="(*)" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -148,7 +156,7 @@
                                                 <label>Confirme Email</label>
                                             </td>
                                             <td>
-                                                <input name="txtemail2" id="txtemail2" type="email" placeholder="(*)">
+                                                <input name="txtemail2" id="txtemail2" type="email" placeholder="(*)" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -156,7 +164,7 @@
                                                 <label>Telefono</label>
                                             </td>
                                             <td>
-                                                <input name="txttelefono" id="txttelefono" placeholder="(*)">
+                                                <input name="txttelefono" id="txttelefono" placeholder="(*)" readonly=»readonly»>
                                             </td>
                                         </tr>
                                         <tr>
@@ -184,7 +192,13 @@
                                                 <label>Dirección</label>
                                             </td>
                                             <td>
-                                                <input name="txtdireccion" id="txtdireccion" placeholder="(*)">
+                                                <input name="txtdireccion" id="txtdireccion" placeholder="(*)" readonly=»readonly»>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center">
+                                                <hr style="width:100%;">
+                                                <label>Datos laborales</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -249,7 +263,6 @@
                                                 <input id="txtmonto" name="txtmonto" type="number" min="1">
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td class="textoderecha">
                                                 <label>Plazo de crédito</label>
@@ -260,7 +273,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button value="enviar" name="btnlimpiar" id="btnenviar" onclick="validarCampos()">Enviar</button>
+                                <button type="submit" value="enviar" name="btnlimpiar" id="btnenviar" onclick=mySubmitFunction(event)>Enviar</button>
                                 <button value="limpiar" name="btnlimpiar" id="btnlimpiar" onclick="clearDatC()">Limpiar</button>
                             </form>
                         </div>

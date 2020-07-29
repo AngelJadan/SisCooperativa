@@ -2,35 +2,91 @@
     include_once '../../conexiondb/conexiondb.php';
     include_once '../../modelo/credito/credito.php';
 
-    class ControladorCredito{
+    class ControladorCredito {
         public function __construct()
         {
+            $credito=new Credito();
         }
-        public function insertarDatosCredito($credito){
-            $sql="INSERT INTO Datos_creditos VALUES(0,'".$credito->getActLaboral()."','".$credito->getNomEmpresa()."','"
-            .$credito->getDirEmpresa()."',".$credito->getTiempo().","
-            .$credito->getIngreso().","
-            .$credito->getCiudad()->getId().",'"
-            .$credito->getPersona()->getIdentificacion()."','"
-            .$credito->getCopiaCedula()."','"
-            .$credito->getCopiaPlanilla()."','"
-            .$credito->getCopiaRol()."','"
-            .$credito->getEstado()."','"
-            .$credito->getTipoCredito()."'"
-            .");";
-            //echo $sql;
-        }
-        public function listarParaCsv(){
-            $sql="SELECT p.per_identificacion identificacion,p.per_sexo sexo, p.per_estado_civil estadocivil, d.dcr_act_laboral actividad, d.dcr_tiempo tiempo, d.dcr_ingreso ingreso, d.dcr_tipo tipo,
-             d.dcr_estado estado, d.dcr_act_laboral empleo
-            FROM datos_creditos d, personas p
-            WHERE d.Personas_per_identificacion=p.per_identificacion";
-            //echo $sql;
+        public function buscaIdCiudad($ciudad){            
+            $sql="SELECT loc_id id from Localidades where loc_nombre='".$ciudad."';";
             $con=new Conexion();
             $query=$con->conectar()->prepare($sql);
             $query->execute();
             return $query->fetchAll();
         }
+        public function insertarCredito($credito){
+            $this->credito=$credito;
+            $sql="INSERT INTO CREDITOS 
+            VALUES(0,'"
+            .$credito->getTamortizacion()."',"
+            .$credito->getMonto().","
+            .$credito->getPlazo().","
+            .$credito->getPlazo().",'"
+            .$credito->getEstado()."',"
+            ."0".","//interes
+            ."0".","//tasa
+            .$credito->getTiempo().",'"
+            .$credito->getNomEmpresa()."','"
+            .$credito->getDirEmpresa()."',"
+            .$credito->getTiempo().","
+            .$credito->getIngreso().",'"
+            .$credito->getTipoCredito()."','"
+            .$credito->getTipoCredito()."',"//proposito
+            .$credito->getAvaluo().",'"
+            .$credito->getGarante()."','"
+            .""."','"//cedula
+            .""."','"//planilla
+            .""."',"//rol
+            .$credito->getEdad().",'"
+            .$credito->getPersona()."',"
+            .$credito->getCiudad()->getId().","
+            .$credito->getTotal().""
+            .");";
+            //echo $sql;
+            try{
+                $con=new Conexion();
+                $query=$con->conectar()->prepare($sql);
+                $query->execute();
+                echo "Credito creado para su revisión";
+            }catch(Exception $e){
+                echo "Se ha producido un error".$e;
+            }
+
+        }
+        public function getIdDatosCreditos($identificacion){
+            $sql="SELECT cre_id id FROM creditos 
+            WHERE Personas_per_identificacion='".$identificacion."';";
+            $con=new Conexion();            
+            $query=$con->conectar()->prepare($sql);
+            return $query->fetchAll();
+            
+        }
+        /**
+         * Esta funcion lista todos los creditos pendientes de aprobar por el jefe de credito.
+         */
+        public function listaCreditosSolicitados(){
+            $sql="SELECT * FROM CREDITOS WHERE cre_estado='Pendiente'";
+            $con=new Conexion();
+            $query=$con->conectar()->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        /**
+         * Esta funcion hace una consulta a la base de datos para generar el archivo csv.
+         */
+        public function listarParaCsv(){
+            $sql="SELECT p.per_identificacion, p.per_id, p.per_sexo,p.per_estado_civil, c.cre_act_laboral, c.cre_tiempo_empleo, c.cre_tipo
+            , c.cre_estado, c.cre_ingreso
+            FROM creditos c, personas p WHERE c.Personas_per_identificacion=p.per_identificacion;";
+            echo $sql;
+            $con=new Conexion();
+            $query=$con->conectar()->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        /**
+         * Esta funcion saca el numero total de cuotas de todos los creditos.
+         */
         public function ncuotas($iden){
             $sql="select SUM(c.cre_numero_cuotas) cuotas from creditos c, personas p where p.per_identificacion='".$iden."';";
             //echo $sql;
@@ -39,17 +95,20 @@
             $query->execute();
             return $query->fetchAll();
         }
+        /**
+         * Esta funcion sacar la tasa mas alta de los creditos de un cliente.
+         */
         public function tasai($iden){
-            $sql="SELECT MAX(c.cre_interes_p) tasa from datos_creditos d, creditos c 
-            WHERE d.Personas_per_identificacion='".$iden."' and d.dcr_id=c.Datos_creditos_dcr_id;";
+            $sql="SELECT MAX(c.cre_intereses_p) tasa from creditos c
+            WHERE c.Personas_per_identificacion='".$iden."';";
             $con=new Conexion();
             $query=$con->conectar()->prepare($sql);
             $query->execute();
             return $query->fetchAll();
         }
         public function cuotasPagadas($iden){
-            $sql="SELECT COUNT(*) cuotas FROM personas p, datos_creditos d, creditos c, cuotas u WHERE p.per_identificacion='".$iden."'
-            and p.per_identificacion=d.Personas_per_identificacion and u.creditos_cre_id=c.cre_id and u.cuo_estado='Pagado';";
+            $sql="SELECT COUNT(*) cuotas FROM creditos c, cuotas u WHERE c.Personas_per_identificacion='".$iden."'
+            and c.cre_id=u.creditos_cre_id and u.cuo_estado='Pagado';";
             //echo $sql;
             $con=new Conexion();
             $query=$con->conectar()->prepare($sql);
@@ -57,8 +116,7 @@
             return $query->fetchAll();
         }
         public function nCreditos($iden){
-            $sql="select COUNT(*) creditos from personas p, datos_creditos d, creditos c where p.per_identificacion='".$iden."'
-            and p.per_identificacion=d.Personas_per_identificacion and d.dcr_id=c.Datos_creditos_dcr_id";
+            $sql="select COUNT(*) creditos from creditos c WHERE c.Personas_per_identificacion='".$iden."';";
             //echo $sql;
             $con=new Conexion();
             $query=$con->conectar()->prepare($sql);
@@ -66,15 +124,15 @@
             return $query->fetchAll();
         }
         public function sumaMonto($iden){
-            $sql="select sum(c.cre_monto) monto from creditos c, datos_creditos d 
-            WHERE d.Personas_per_identificacion=".$iden." and d.dcr_id=c.Datos_creditos_dcr_id;";
+            $sql="select sum(c.cre_monto) monto from creditos c 
+            WHERE c.Personas_per_identificacion='".$iden."';";
             $con=new Conexion();
             $query=$con->conectar()->prepare($sql);
             $query->execute();
             return $query->fetchAll();
         }
     }
-    $con=new ControladorCredito();
+    /*$con=new ControladorCredito();
     $per=new Persona();
     $per->setTipoId("Pasaporte");
     $per->setIdentificacion("59562631541");
@@ -84,7 +142,8 @@
     $per->setDireccion("Gran Colombia y Hermano Miguel");
     $per->setTelefono("05689551");
     $per->setCorreo("juanandrade@gmail.com");
-    $per->setSexo("Masculino");
+    $per->setSexo("Masculino");    
+
     $loc=new Localidad();
     $loc->setId(2);
     $cred=new Credito();
@@ -97,14 +156,28 @@
     $cred->setPerona($per);
     $cred->setCiudad($loc);
     $cred->setEstado("Pendiente");
+    $cred->setMonto(1500);
+    $cred->setPlazo(12);
+    $cred->setTamortizacion("Francesa");
+    $cred->setNcuotas(12);
+    $cred->setTasa(10);
+    $cred->setInteres(120);
+    $cred->setTotal(1620);
+
     $con->insertarDatosCredito($cred);
-    
+    $con->insertarCredito($cred,2,"Cliente1",2);
+
     $datos=$con->listarParaCsv();
     foreach($datos as $key=>$value){
         $id=$value["identificacion"];
      //   $nombre=$value["per_nombre"];
        // $apellido=$value["per_apellido"];
     }
+    $resId=$con->getIdDatosCreditos("01645032234");
+    foreach($resId AS $key=>$value){
+        $id=$value["id"];
+    }
+    //echo $id;
 /*
     $identificacion="01645032234";
     $cuot=$con->ncuotas($identificacion);
