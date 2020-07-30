@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2020 a las 02:51:00
+-- Tiempo de generación: 30-07-2020 a las 05:20:34
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -63,13 +63,7 @@ INSERT INTO `acessos` (`ace_id`, `ace_fecha_intento`, `ace_tipo_acceso`, `ace_ob
 (20, '15/06/2020', 'Cajero', 'conectado', 'CAJERO1'),
 (21, '15/06/2020', 'Cliente', 'conectado', 'cliente1'),
 (31, '26/06/2020', 'Administrador', 'conectado', 'AJADAN'),
-(32, '26/06/2020', '', 'conectado', ''),
-(33, '26/06/2020', '', 'conectado', ''),
-(34, '26/06/2020', '', 'conectado', ''),
 (35, '27/06/2020', 'Administrador', 'conectado', 'AJADAN'),
-(36, '27/06/2020', '', 'conectado', ''),
-(37, '27/06/2020', '', 'conectado', ''),
-(38, '27/06/2020', '', 'conectado', ''),
 (39, '27/06/2020', 'Administrador', 'conectado', 'AJADAN'),
 (40, '27/06/2020', 'Administrador', 'conectado', 'AJADAN'),
 (41, '27/06/2020', 'Administrador', 'conectado', 'AJADAN'),
@@ -90,7 +84,11 @@ INSERT INTO `acessos` (`ace_id`, `ace_fecha_intento`, `ace_tipo_acceso`, `ace_ob
 (56, '14/07/2020', 'Administrador', 'conectado', 'AJADAN'),
 (57, '15/07/2020', 'Administrador', 'conectado', 'AJADAN'),
 (58, '15/07/2020', 'Cajero', 'conectado', 'CAJERO1'),
-(59, '15/07/2020', 'Cliente', 'conectado', 'cliente1');
+(59, '15/07/2020', 'Cliente', 'conectado', 'cliente1'),
+(60, '18/07/2020', 'Administrador', 'conectado', 'AJADAN'),
+(61, '18/07/2020', 'Cajero', 'conectado', 'CAJERO1'),
+(62, '20/07/2020', 'Administrador', 'conectado', 'AJADAN'),
+(63, '20/07/2020', 'Administrador', 'conectado', 'AJADAN');
 
 -- --------------------------------------------------------
 
@@ -99,7 +97,6 @@ INSERT INTO `acessos` (`ace_id`, `ace_fecha_intento`, `ace_tipo_acceso`, `ace_ob
 --
 
 CREATE TABLE `clientes` (
-  `cli_id` int(11) NOT NULL,
   `cli_cuenta_ahorros` int(11) NOT NULL,
   `cli_fecha_registro` varchar(12) NOT NULL,
   `usuarios_usu_usuario` varchar(50) NOT NULL
@@ -109,14 +106,14 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`cli_id`, `cli_cuenta_ahorros`, `cli_fecha_registro`, `usuarios_usu_usuario`) VALUES
-(0, 1, '12/06/2020', 'cliente1'),
-(0, 2, '12/06/2020', 'cliente2'),
-(0, 3, '12/06/2020', 'cliente3'),
-(0, 4, '12/06/2020', 'cliente4'),
-(0, 5, '12/06/2020', 'cliente5'),
-(0, 6, '12/06/2020', 'cliente6'),
-(0, 7, '12/06/2020', 'cliente7');
+INSERT INTO `clientes` (`cli_cuenta_ahorros`, `cli_fecha_registro`, `usuarios_usu_usuario`) VALUES
+(1, '12/06/2020', 'cliente1'),
+(2, '12/06/2020', 'cliente2'),
+(3, '12/06/2020', 'cliente3'),
+(4, '12/06/2020', 'cliente4'),
+(5, '12/06/2020', 'cliente5'),
+(6, '12/06/2020', 'cliente6'),
+(7, '12/06/2020', 'cliente7');
 
 -- --------------------------------------------------------
 
@@ -126,15 +123,40 @@ INSERT INTO `clientes` (`cli_id`, `cli_cuenta_ahorros`, `cli_fecha_registro`, `u
 
 CREATE TABLE `creditos` (
   `cre_id` int(11) NOT NULL,
-  `clientes_cli_cuenta_ahorros` int(11) NOT NULL,
-  `usuarios_usu_usuario` varchar(50) NOT NULL,
   `cre_tipo_amortizacion` varchar(20) NOT NULL,
-  `cre_monto` float NOT NULL,
-  `cre_plazo` varchar(25) NOT NULL,
-  `cre_numero_cuotas` int(11) NOT NULL,
-  `cre_estado` varchar(15) NOT NULL,
-  `Datos_creditos_dcr_id` int(11) NOT NULL
+  `cre_monto` float(12,2) NOT NULL,
+  `cre_plazo` int(2) NOT NULL,
+  `cre_numero_cuotas` int(2) NOT NULL,
+  `cre_estado` varchar(50) NOT NULL,
+  `cre_interes` float(12,2) NOT NULL,
+  `cre_intereses_p` float(12,2) NOT NULL,
+  `cre_act_laboral` varchar(250) NOT NULL,
+  `cre_empresa` varchar(250) NOT NULL,
+  `cre_dir_empresa` varchar(250) NOT NULL,
+  `cre_tiempo_empleo` int(11) NOT NULL,
+  `cre_ingreso` float(12,2) NOT NULL,
+  `cre_tipo` varchar(20) NOT NULL,
+  `cre_proposito` varchar(250) NOT NULL,
+  `cre_avaluo` float(12,2) NOT NULL,
+  `cre_garante` varchar(50) NOT NULL,
+  `cre_copia_cedula` varchar(250) DEFAULT NULL,
+  `cre_copia_planilla` varchar(250) DEFAULT NULL,
+  `cre_copia_rol` varchar(250) DEFAULT NULL,
+  `cre_edad` int(11) NOT NULL,
+  `Personas_per_identificacion` varchar(50) NOT NULL,
+  `Localidades_loc_id` int(11) NOT NULL,
+  `cre_total` float(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `creditos`
+--
+
+INSERT INTO `creditos` (`cre_id`, `cre_tipo_amortizacion`, `cre_monto`, `cre_plazo`, `cre_numero_cuotas`, `cre_estado`, `cre_interes`, `cre_intereses_p`, `cre_act_laboral`, `cre_empresa`, `cre_dir_empresa`, `cre_tiempo_empleo`, `cre_ingreso`, `cre_tipo`, `cre_proposito`, `cre_avaluo`, `cre_garante`, `cre_copia_cedula`, `cre_copia_planilla`, `cre_copia_rol`, `cre_edad`, `Personas_per_identificacion`, `Localidades_loc_id`, `cre_total`) VALUES
+(1, 'Pendiente', 1500.00, 1500, 1500, 'Pendiente', 0.00, 0.00, '2', 'jjlkjlk', 'jlkjklj', 2, 1200.00, '2', '2', 30000.00, 'na', '', '', '', 18, '01645032234', 3, 0.00),
+(2, 'Pendiente', 1500.00, 1500, 1500, 'Pendiente', 0.00, 0.00, '2', 'jjlkjlk', 'jlkjklj', 2, 1200.00, '3', '3', 30000.00, 'na', '', '', '', 18, '01645032234', 3, 0.00),
+(5, 'Pendiente', 1500.00, 1500, 1500, 'Pendiente', 0.00, 0.00, '2', 'jjlkjlk', 'jlkjklj', 2, 1200.00, '3', '3', 30000.00, 'na', '', '', '', 18, '01645032234', 3, 0.00),
+(6, 'Pendiente', 1500.00, 1500, 1500, 'Pendiente', 0.00, 0.00, '2', 'jjlkjlk', 'jlkjklj', 2, 1200.00, '3', '3', 30000.00, 'na', '', '', '', 18, '01645032234', 3, 0.00);
 
 -- --------------------------------------------------------
 
@@ -144,33 +166,13 @@ CREATE TABLE `creditos` (
 
 CREATE TABLE `cuotas` (
   `cuo_id` int(11) NOT NULL,
-  `cuo_fecha` date NOT NULL,
-  `cuot_monto` float NOT NULL,
-  `cuo_estado` varchar(20) NOT NULL,
+  `cuo_monto` float NOT NULL,
   `creditos_cre_id` int(11) NOT NULL,
-  `estadocuentas_ect_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `datos_creditos`
---
-
-CREATE TABLE `datos_creditos` (
-  `dcr_id` int(11) NOT NULL,
-  `dcr_act_laboral` varchar(250) NOT NULL,
-  `dcr_empresa` varchar(250) NOT NULL,
-  `dcr_dir_empresa` varchar(250) NOT NULL,
-  `dcr_tiempo` int(11) NOT NULL,
-  `dcr_ingreso` int(11) NOT NULL,
-  `Localidades_loc_id` int(11) NOT NULL,
-  `Personas_per_identificacion` varchar(13) NOT NULL,
-  `dcr_copia_cedula` varchar(250) NOT NULL,
-  `dcr_copia_planilla` varchar(250) NOT NULL,
-  `dcr_copia_rol` varchar(250) NOT NULL,
-  `dcr_estado` varchar(50) NOT NULL,
-  `dcr_tipo` varchar(100) NOT NULL
+  `estadocuentas_ect_id` int(11) NOT NULL,
+  `cuo_numero` int(11) NOT NULL,
+  `cuo_fecha_vencimiento` date NOT NULL,
+  `cuo_fecha_pago` date DEFAULT NULL,
+  `cuo_estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -212,30 +214,33 @@ CREATE TABLE `estadocuentas` (
   `ect_fecha` date NOT NULL,
   `ect_tipo_operacion` varchar(25) NOT NULL,
   `ect_saldo` float NOT NULL,
-  `clientes_cli_cuenta_ahorros` int(11) NOT NULL
+  `clientes_cli_cuenta_ahorros` int(11) NOT NULL,
+  `ect_monto` float(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `estadocuentas`
 --
 
-INSERT INTO `estadocuentas` (`ect_id`, `ect_fecha`, `ect_tipo_operacion`, `ect_saldo`, `clientes_cli_cuenta_ahorros`) VALUES
-(1, '0000-00-00', 'INICIAL', 5, 1),
-(2, '0000-00-00', 'INICIAL', 5, 2),
-(3, '0000-00-00', 'INICIAL', 5, 3),
-(4, '0000-00-00', 'INICIAL', 5, 4),
-(5, '0000-00-00', 'INICIAL', 5, 5),
-(6, '2020-06-12', 'INICIAL', 5, 6),
-(7, '2020-06-12', 'INICIAL', 5, 7),
-(8, '2020-06-12', 'RETIRO', 2, 2),
-(9, '2020-06-12', 'DEPOSITO', 25, 1),
-(10, '2020-06-12', 'RETIRO', 15, 1),
-(15, '2020-06-12', 'RETIRO', 5, 1),
-(16, '2020-06-15', 'DEPOSITO', 17, 2),
-(17, '2020-06-15', 'RETIRO', 12, 2),
-(18, '2020-06-15', 'DEPOSITO', 20, 1),
-(19, '2020-06-15', 'RETIRO', 19, 1),
-(20, '2020-07-15', 'DEPOSITO', 49, 1);
+INSERT INTO `estadocuentas` (`ect_id`, `ect_fecha`, `ect_tipo_operacion`, `ect_saldo`, `clientes_cli_cuenta_ahorros`, `ect_monto`) VALUES
+(1, '0000-00-00', 'INICIAL', 5, 1, 0.00),
+(2, '0000-00-00', 'INICIAL', 5, 2, 0.00),
+(3, '0000-00-00', 'INICIAL', 5, 3, 0.00),
+(4, '0000-00-00', 'INICIAL', 5, 4, 0.00),
+(5, '0000-00-00', 'INICIAL', 5, 5, 0.00),
+(6, '2020-06-12', 'INICIAL', 5, 6, 0.00),
+(7, '2020-06-12', 'INICIAL', 5, 7, 0.00),
+(8, '2020-06-12', 'RETIRO', 2, 2, 0.00),
+(9, '2020-06-12', 'DEPOSITO', 25, 1, 0.00),
+(10, '2020-06-12', 'RETIRO', 15, 1, 0.00),
+(15, '2020-06-12', 'RETIRO', 5, 1, 0.00),
+(16, '2020-06-15', 'DEPOSITO', 17, 2, 0.00),
+(17, '2020-06-15', 'RETIRO', 12, 2, 0.00),
+(18, '2020-06-15', 'DEPOSITO', 20, 1, 0.00),
+(19, '2020-06-15', 'RETIRO', 19, 1, 0.00),
+(20, '2020-07-15', 'DEPOSITO', 49, 1, 0.00),
+(21, '2020-07-18', 'RETIRO', 49, 1, 0.00),
+(22, '2020-07-08', 'N/D Credito', 29, 1, 0.00);
 
 -- --------------------------------------------------------
 
@@ -256,7 +261,10 @@ CREATE TABLE `localidades` (
 INSERT INTO `localidades` (`loc_id`, `loc_nombre`, `Localidades_loc_id`) VALUES
 (1, 'ECUADOR', 0),
 (2, 'AZUAY', 1),
-(3, 'CUENCA', 2);
+(3, 'CUENCA', 2),
+(4, 'GUALACEO', 2),
+(5, 'CAÑAR', 1),
+(6, 'AZOGUES', 4);
 
 -- --------------------------------------------------------
 
@@ -271,34 +279,33 @@ CREATE TABLE `personas` (
   `per_apellido` varchar(250) NOT NULL,
   `per_telefono` varchar(50) NOT NULL,
   `per_direccion` varchar(250) NOT NULL,
-  `per_correo` varchar(250) NOT NULL
+  `per_correo` varchar(250) NOT NULL,
+  `per_sexo` varchar(10) NOT NULL,
+  `per_tipo_documento` varchar(20) NOT NULL,
+  `per_estado_civil` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`per_id`, `per_identificacion`, `per_nombre`, `per_apellido`, `per_telefono`, `per_direccion`, `per_correo`) VALUES
-(0, '', '', '', '', '', ''),
-(0, '0106405235', '', '', '', '', ''),
-(1, '0106405236', 'ANGEL', 'JADAN', '0990537351', 'JADAN', 'ANGEL.JADAN12@GMAIL.COM'),
-(0, '0106405237', '', '', '', '', ''),
-(0, '01645032234', 'cliente1', 'cliente1', '51515', 'cuenca', 'cli@.com'),
-(0, '01645032264', 'CAJERO3', 'CAJERO3', '595121', 'Cuenca', 'ajadanc@est.ups.edu.ec'),
-(0, '016450322641', 'CAJERO1', 'cajero1', '048494', 'cuenca', 'caj'),
-(0, '1155121', 'Abg', 'ab', '454851', 'cuenca', 'ajadanc@est.ups.edu.ec'),
-(0, '11551216', 'Abg', 'ab', '454851', 'cuenca', 'ajadanc@est.ups.edu.ec'),
-(0, '12', '', '', '', '', ''),
-(0, '12315465', 'cliente2', 'cliente2', '048494', 'cuenca', 'caj'),
-(0, '1231546535', 'cliente3', 'cliente3', '048494', 'lkjflkasj', 'caj'),
-(0, '12315465356', 'cliente4', 'cliente4', '048494', 'lkjflkasj', 'caj'),
-(0, '12315465358', 'CAJERO2', 'cajero2', '0990537351', 'Jadan', 'ajadanc@est.ups.edu.ec'),
-(0, '1231546560', 'cliente6', 'cliente6', '048494', 'lkjflkasj', 'caj'),
-(0, '1231546561', 'cliente7', 'cliente7', '048494', 'lkjflkasj', 'caj'),
-(0, '1231546569', 'cliente5', 'cliente5', '048494', 'lkjflkasj', 'caj'),
-(0, '12456', 'CAJERO4', 'CAJERO4', '4846112', 'Cuenca', 'ajadanc@est.ups.edu.ec'),
-(0, '4554655', 'Remigio', 'Hurtado', '459845', 'cuenca', 'remigiohurtado@gmail.com'),
-(0, '45546556', 'Remigio', 'Hurtado', '545', 'cuenca', 'remigiohurtado@gmail.com');
+INSERT INTO `personas` (`per_id`, `per_identificacion`, `per_nombre`, `per_apellido`, `per_telefono`, `per_direccion`, `per_correo`, `per_sexo`, `per_tipo_documento`, `per_estado_civil`) VALUES
+(1, '0106405236', 'ANGEL', 'JADAN', '0990537351', 'JADAN', 'angel.jadan12@gmail.com', 'Masculino', 'Cedula', 'Solter@'),
+(0, '01645032234', 'cliente1', 'cliente1', '51515', 'cuenca', 'cli@prueba1.com', '', '', ''),
+(0, '01645032264', 'CAJERO3', 'CAJERO3', '595121', 'Cuenca', 'ajadanc@est.ups.edu.ec', 'Masculino', 'Pasaporte', ''),
+(0, '016450322641', 'CAJERO1', 'cajero1', '048494', 'cuenca', 'caj', 'Masculino', 'Pasaporte', ''),
+(0, '1155121', 'Abg', 'ab', '454851', 'cuenca', 'ajadanc@est.ups.edu.ec', 'Masculino', 'Pasaporte', 'Casad@'),
+(0, '11551216', 'Abg', 'ab', '454851', 'cuenca', 'ajadanc@est.ups.edu.ec', 'Masculino', 'Pasaporte', 'Casad@'),
+(0, '12315465', 'cliente2', 'cliente2', '048494', 'cuenca', 'caj', '', '', ''),
+(0, '1231546535', 'cliente3', 'cliente3', '048494', 'lkjflkasj', 'caj', '', '', ''),
+(0, '12315465356', 'cliente4', 'cliente4', '048494', 'lkjflkasj', 'caj', '', '', ''),
+(0, '12315465358', 'CAJERO2', 'cajero2', '0990537351', 'Jadan', 'ajadanc@est.ups.edu.ec', 'Femenino', 'Pasaporte', ''),
+(0, '1231546560', 'cliente6', 'cliente6', '048494', 'lkjflkasj', 'caj', '', '', ''),
+(0, '1231546561', 'cliente7', 'cliente7', '048494', 'lkjflkasj', 'caj', '', '', ''),
+(0, '1231546569', 'cliente5', 'cliente5', '048494', 'lkjflkasj', 'caj', '', '', ''),
+(0, '12456', 'CAJERO4', 'CAJERO4', '4846112', 'Cuenca', 'ajadanc@est.ups.edu.ec', '', '', ''),
+(0, '4554655', 'Remigio', 'Hurtado', '459845', 'cuenca', 'remigiohurtado@gmail.com', '', '', ''),
+(0, '45546556', 'Remigio', 'Hurtado', '545', 'cuenca', 'remigiohurtado@gmail.com', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -333,7 +340,7 @@ INSERT INTO `retiros` (`ret_id`, `ret_identificacion_beneficiario`, `ret_monto`,
 --
 
 CREATE TABLE `usuarios` (
-  `usu_id` int(11) DEFAULT NULL,
+  `per_id` int(11) NOT NULL,
   `usu_usuario` varchar(50) NOT NULL,
   `usu_password` varchar(50) NOT NULL,
   `usu_tipo_usuario` varchar(25) NOT NULL,
@@ -345,23 +352,22 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`usu_id`, `usu_usuario`, `usu_password`, `usu_tipo_usuario`, `usu_fecha_registro`, `personas_per_identificacion`) VALUES
-(0, '', '3TJQSD', 'Cajero', '26/06/2020', ''),
-(NULL, 'AJADAN', 'Angel', 'Administrador', '12/6/2020', '0106405236'),
-(0, 'CAJERO1', 'cajero1', 'Cajero', '12/06/2020', '016450322641'),
-(0, 'CAJERO2', '32G8bV', 'Cajero', '12/06/2020', '12315465358'),
-(0, 'CAJERO3', 'OQX9eq', 'Cajero', '12/06/2020', '01645032264'),
-(0, 'CAJERO4', 'sNBMWi', 'Cajero', '12/06/2020', '12456'),
-(0, 'CAJERO6', 'Kn0Llm', 'Cajero', '15/06/2020', '11551216'),
-(0, 'cliente1', 'cliente1', 'Cliente', '12/06/2020', '01645032234'),
-(0, 'cliente2', 'SMqMYH', 'Cliente', '12/06/2020', '12315465'),
-(0, 'cliente3', 'AiZiJB', 'Cliente', '12/06/2020', '1231546535'),
-(0, 'cliente4', 'ocWvTR', 'Cliente', '12/06/2020', '12315465356'),
-(0, 'cliente5', 'vDgT9X', 'Cliente', '12/06/2020', '1231546569'),
-(0, 'cliente6', 'MC9V2N', 'Cliente', '12/06/2020', '1231546560'),
-(0, 'cliente7', 'qcY9Fq', 'Cliente', '12/06/2020', '1231546561'),
-(0, 'remigio2', 'bj4nlp', 'Cliente', '15/06/2020', '4554655'),
-(0, 'remigio3', 'weQ90Z', 'Cliente', '15/06/2020', '45546556');
+INSERT INTO `usuarios` (`per_id`, `usu_usuario`, `usu_password`, `usu_tipo_usuario`, `usu_fecha_registro`, `personas_per_identificacion`) VALUES
+(2, 'AJADAN', 'Angel', 'Administrador', '12/6/2020', '0106405236'),
+(3, 'CAJERO1', 'cajero1', 'Cajero', '12/06/2020', '016450322641'),
+(4, 'CAJERO2', '32G8bV', 'Cajero', '12/06/2020', '12315465358'),
+(5, 'CAJERO3', 'OQX9eq', 'Cajero', '12/06/2020', '01645032264'),
+(6, 'CAJERO4', 'sNBMWi', 'Cajero', '12/06/2020', '12456'),
+(7, 'CAJERO6', 'Kn0Llm', 'Cajero', '15/06/2020', '11551216'),
+(8, 'cliente1', 'cliente1', 'Cliente', '12/06/2020', '01645032234'),
+(9, 'cliente2', 'SMqMYH', 'Cliente', '12/06/2020', '12315465'),
+(10, 'cliente3', 'AiZiJB', 'Cliente', '12/06/2020', '1231546535'),
+(11, 'cliente4', 'ocWvTR', 'Cliente', '12/06/2020', '12315465356'),
+(12, 'cliente5', 'vDgT9X', 'Cliente', '12/06/2020', '1231546569'),
+(13, 'cliente6', 'MC9V2N', 'Cliente', '12/06/2020', '1231546560'),
+(14, 'cliente7', 'qcY9Fq', 'Cliente', '12/06/2020', '1231546561'),
+(15, 'remigio2', 'bj4nlp', 'Cliente', '15/06/2020', '4554655'),
+(16, 'remigio3', 'weQ90Z', 'Cliente', '15/06/2020', '45546556');
 
 --
 -- Índices para tablas volcadas
@@ -386,25 +392,15 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `creditos`
   ADD PRIMARY KEY (`cre_id`),
-  ADD KEY `creditos_clientes_fk` (`clientes_cli_cuenta_ahorros`),
-  ADD KEY `creditos_usuarios_fk` (`usuarios_usu_usuario`),
-  ADD KEY `Datos_creditos_dcr_id_fk` (`Datos_creditos_dcr_id`);
+  ADD KEY `personas_personas_fk` (`Personas_per_identificacion`),
+  ADD KEY `localidades_localidades_fk` (`Localidades_loc_id`);
 
 --
 -- Indices de la tabla `cuotas`
 --
 ALTER TABLE `cuotas`
   ADD PRIMARY KEY (`cuo_id`),
-  ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`),
-  ADD KEY `cuotas_estadocuentas_fk` (`estadocuentas_ect_id`);
-
---
--- Indices de la tabla `datos_creditos`
---
-ALTER TABLE `datos_creditos`
-  ADD PRIMARY KEY (`dcr_id`),
-  ADD KEY `Personas_per_identificacion_fk` (`Personas_per_identificacion`),
-  ADD KEY `Localidades_loc_id_fk` (`Localidades_loc_id`);
+  ADD KEY `cuotas_creditos_fk` (`creditos_cre_id`);
 
 --
 -- Indices de la tabla `depositos`
@@ -448,7 +444,8 @@ ALTER TABLE `retiros`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usu_usuario`),
-  ADD UNIQUE KEY `usuarios__id` (`personas_per_identificacion`);
+  ADD UNIQUE KEY `usuarios__id` (`personas_per_identificacion`),
+  ADD UNIQUE KEY `per_id` (`per_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -458,13 +455,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `acessos`
 --
 ALTER TABLE `acessos`
-  MODIFY `ace_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `ace_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `creditos`
 --
 ALTER TABLE `creditos`
-  MODIFY `cre_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cuotas`
@@ -482,13 +479,25 @@ ALTER TABLE `depositos`
 -- AUTO_INCREMENT de la tabla `estadocuentas`
 --
 ALTER TABLE `estadocuentas`
-  MODIFY `ect_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ect_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla `localidades`
+--
+ALTER TABLE `localidades`
+  MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `retiros`
 --
 ALTER TABLE `retiros`
   MODIFY `ret_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
@@ -510,23 +519,14 @@ ALTER TABLE `clientes`
 -- Filtros para la tabla `creditos`
 --
 ALTER TABLE `creditos`
-  ADD CONSTRAINT `Datos_creditos_dcr_id_fk` FOREIGN KEY (`Datos_creditos_dcr_id`) REFERENCES `datos_creditos` (`dcr_id`),
-  ADD CONSTRAINT `creditos_clientes_fk` FOREIGN KEY (`clientes_cli_cuenta_ahorros`) REFERENCES `clientes` (`cli_cuenta_ahorros`),
-  ADD CONSTRAINT `creditos_usuarios_fk` FOREIGN KEY (`usuarios_usu_usuario`) REFERENCES `usuarios` (`usu_usuario`);
+  ADD CONSTRAINT `localidades_localidades_fk` FOREIGN KEY (`Localidades_loc_id`) REFERENCES `localidades` (`loc_id`),
+  ADD CONSTRAINT `personas_personas_fk` FOREIGN KEY (`Personas_per_identificacion`) REFERENCES `personas` (`per_identificacion`);
 
 --
 -- Filtros para la tabla `cuotas`
 --
 ALTER TABLE `cuotas`
-  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`),
-  ADD CONSTRAINT `cuotas_estadocuentas_fk` FOREIGN KEY (`estadocuentas_ect_id`) REFERENCES `estadocuentas` (`ect_id`);
-
---
--- Filtros para la tabla `datos_creditos`
---
-ALTER TABLE `datos_creditos`
-  ADD CONSTRAINT `Localidades_loc_id_fk` FOREIGN KEY (`Localidades_loc_id`) REFERENCES `localidades` (`loc_id`),
-  ADD CONSTRAINT `Personas_per_identificacion_fk` FOREIGN KEY (`Personas_per_identificacion`) REFERENCES `personas` (`per_identificacion`);
+  ADD CONSTRAINT `cuotas_creditos_fk` FOREIGN KEY (`creditos_cre_id`) REFERENCES `creditos` (`cre_id`);
 
 --
 -- Filtros para la tabla `depositos`
