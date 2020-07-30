@@ -76,7 +76,7 @@ a {
 
 .anima-component-wrapper a,
 .anima-screen a {
-    text-decoration: none;
+    text-decoration: double;
 }
 
 .anima-flexbox-container a {
@@ -98,6 +98,9 @@ a {
 
 .anima-screen div {
     -webkit-text-size-adjust: none;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
 }
 
 .anima-container-center-vertical,
@@ -482,7 +485,7 @@ a {
 
 .inicio {
     background-color: var(--auto-palette-color-1);
-    height: auto;
+    height: 150%;
     overflow: hidden;
     position: absolute;
     width: 1440.0px;
