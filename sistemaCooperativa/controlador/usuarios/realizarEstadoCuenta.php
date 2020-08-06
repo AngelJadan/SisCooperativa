@@ -25,11 +25,19 @@ class EstadoCuenta extends Conexion{
     }
 
     public function resumenCreditos($cliente){
-        $sql = "select A.cre_id, B.dcr_tipo, A.cre_monto, E.ect_saldo, D.cuo_fecha from creditos A, datos_creditos B, estadocuentas E, cuotas D, usuarios U where A.usuarios_usu_usuario = '".$cliente."' and  A.cre_estado='activo' group by A.cre_id;";
+        $sql = "SELECT A.cre_id, A.cre_monto, A.cre_tipo, A.cre_total, B.cuo_fecha_vencimiento
+        FROM creditos A, cuotas B
+        WHERE A.cre_estado='Activo'";
         $query=Conexion::conectar()->prepare($sql);
         $query->execute();
         return $query->fetchAll();
 
     }
+
+    public function buscarDatos($idCredito){
+        $sql = "select cre_monto, cre_plazo, cre_interes, cre_tipo_amortizacion from creditos where cre_id = '".$idCredito."'";
+        $query=Conexion::conectar()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
-?>

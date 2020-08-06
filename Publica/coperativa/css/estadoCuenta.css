@@ -135,12 +135,55 @@ a {
     word-break: break-all;
     word-break: break-word;
     height: auto;
+    width: 100%;
+    display: inline-table;
 }
 
 .anima-auto-animated div {
     opacity: 0;
     position: absolute;
     --anima-z-index: -1;
+}
+
+table {
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    width: 100% !important;
+    text-align: center !important;
+    border-collapse: collapse !important;
+    margin: 0 0 1em 0 !important;
+    caption-side: top !important;
+}
+
+tbody {
+    border-top: 1px solid #000 !important;
+    border-bottom: 1px solid #000 !important;
+}
+
+tbody th,
+tfoot th {
+    border: 0;
+}
+
+th.name {
+    width: 25% !important;
+}
+
+th.location {
+    width: 20% !important;
+}
+
+th.lasteruption {
+    width: 30% !important;
+}
+
+th.eruptiontype {
+    width: 25% !important;
+}
+
+tfoot {
+    text-align: center !important;
+    color: #555 !important;
+    font-size: 0.8em !important;
 }
 
 
@@ -579,19 +622,20 @@ a {
     width: auto;
 }
 
-.inicio .cuerpo-W3vS2v {
-    align-self: flex-end;
+.cuerpo-W3vS2v {
+    margin: auto;
     background-color: rgba(255, 255, 255, 0);
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     height: auto;
-    justify-content: flex-start;
     left: 100px;
     position: relative;
     top: 214px;
-    transform: rotate(0deg);
-    width: 1201px;
+    width: 60%;
+}
+
+table {
+    display: inline;
 }
 
 .inicio .rectangle-4c20WX {

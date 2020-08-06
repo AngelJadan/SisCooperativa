@@ -1,0 +1,145 @@
+        body {
+            background-color: rgb(201, 235, 252);
+        }
+        
+        div.tablaAmortizacion {
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 40%;
+        }
+        
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 0 0 1em 0;
+            caption-side: top;
+        }
+        
+        .formulario {
+            font-family: cursive;
+        }
+        
+        caption,
+        td,
+        th {
+            padding: 0.3em;
+        }
+        
+        th {
+            font-family: cursive;
+        }
+        
+        tbody {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        
+        tbody th,
+        tfoot th {
+            border: 0;
+        }
+        
+        th.name {
+            width: 25%;
+        }
+        
+        th.location {
+            width: 20%;
+        }
+        
+        th.lasteruption {
+            width: 30%;
+        }
+        
+        th.eruptiontype {
+            width: 25%;
+        }
+        
+        tfoot {
+            text-align: center;
+            color: #555;
+            font-size: 0.8em;
+        }
+        
+        div.cabezeraDatos {
+            margin: auto;
+            text-align: left;
+            width: 30%;
+        }
+        
+        #monto {
+            margin: 2px;
+            padding-right: 3px;
+            width: 50%;
+        }
+        
+        #plazo {
+            margin: 2px;
+            padding-right: 3px;
+            width: 53%;
+        }
+        
+        #interes {
+            margin: 2px;
+            padding-right: 3px;
+            width: 48%;
+        }
+        
+        #amortizacion {
+            margin: 2px;
+            padding-right: 3px;
+            width: 35%;
+        }
+        
+        .input {
+            font-weight: bold;
+        }
+        
+        .titulos {
+            text-align: center;
+            font-family: Arial Black;
+            font-weight: bold;
+            font-size: 30px;
+            background: #202020;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.4), 0px -1px 1px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 40%;
+            padding-bottom: 20px;
+        }
+        
+        .btnSalir {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: wavy;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            margin-bottom: 20px;
+        }
+        
+        .btnSalir:hover {
+            background-color: #3e8e41
+        }
+        
+        .btnSalir:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }

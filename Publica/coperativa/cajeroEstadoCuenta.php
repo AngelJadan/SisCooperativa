@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta content="width=1440, maximum-scale=1.0" name="viewport" />
     <link href="./css/estadoCuenta.css" rel="stylesheet" type="text/css" />
-    <script src="./js/calculoAmortizacion.js"></script>
-    <script src="./js/moment.js"></script>
+    <script src="./js/amortizacionTabla.js"></script>
     <meta content="AnimaApp.com - Design to code, Automated." name="author">
     </meta>
 </head>
 
 <body style="margin: 0;
- background: rgba(255, 255, 255, 1.0);">
+ background: rgba(255, 255, 255, 1.0);" onload="obtenerIdTabla()">
     <input id="anPageName" name="page" type="hidden" value="inicio" />
     <div class="anima-container-center-horizontal">
         <div class="inicio anima-screen ">
@@ -29,7 +28,7 @@
                         echo "<h2>Bienvenido: $cliente</h2>";
                         ?>
 
-                        <table border="1">
+                        <table class="tabla" border="1">
                             <tr>
                                 <th>Número </th>
                                 <th>Tipo de transacción</th>
@@ -62,7 +61,7 @@
                 </div>
 
             </div>
-            <div class="cuerpo-W3vS2v anima-flexbox-container">
+            <div class="cuerpo-W3vS2v" >
                 <div>
                     <?php
                     $cliente = $_GET["usuario"];
@@ -109,13 +108,12 @@
 
                             foreach ($ect->resumenCreditos($cliente) as $key => $value) {
                             ?>
-                                <tr>
-                                    <td><?php echo $row = $value['cre_id'] ?></td>
-                                    <td><?php echo $row = $value['dcr_tipo'] ?></td>
+                                <tr style="cursor: pointer;">
+                                    <td ><?php echo $row = $value['cre_id'] ?></td>
+                                    <td><?php echo $row = $value['cre_tipo'] ?></td>
                                     <td><?php echo $row = $value['cre_monto'] ?></td>
-                                    <td><?php echo $row = $value['ect_saldo'] ?></td>
-                                    <td><?php echo $row = $value['cuo_fecha'] ?></td>
-                                    <td><input type="button" id="btnCalculatr" value="Amortiacion" onclick="calcularCuota(5000, 12, 1.5)">
+                                    <td><?php echo $row = $value['cre_total'] ?></td>
+                                    <td><?php echo $row = $value['cuo_fecha_vencimiento'] ?></td>
 
                                 </tr>
 
