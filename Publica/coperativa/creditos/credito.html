@@ -4,7 +4,7 @@
         <link href="../img/favicon.png" rel="shortcut icon"/>
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
-        <link href="../css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/iniAdmi.css" rel="stylesheet" type="text/css"/>
         <link href="../css/credito.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <meta content="AnimaApp.com - Design to code, Automated." name="author">
@@ -62,16 +62,16 @@
                                             <td>
                                                 <select name="cboxtipoc" id="cboxtipoc">
                                                     <option id="1" value="1">Seleccionar</option>
-                                                    <option id="2" value="2">Vivienda</option>
-                                                    <option id="3" value="3">Consumo</option>
-                                                    <option id="4" value="4">Vehiculo</option>
-                                                    <option id="5" value="5">Tecnologia</option>
-                                                    <option id="6" value="6">Electrodomesticos</option>
-                                                    <option id="7" value="7">Reparaciones</option>
-                                                    <option id="8" value="8">Educación</option>
-                                                    <option id="9" value="9">Vacaciones</option>
-                                                    <option id="10" value="10" >Capacitación</option>
-                                                    <option id="11" value="11">Otros</option>
+                                                    <option id="2" value="vivienda">Vivienda</option>
+                                                    <option id="3" value="consumo">Consumo</option>
+                                                    <option id="4" value="vehiculo">Vehiculo</option>
+                                                    <option id="5" value="tecnologia">Tecnologia</option>
+                                                    <option id="6" value="electrodomesticos">Electrodomesticos</option>
+                                                    <option id="7" value="reparaciones">Reparaciones</option>
+                                                    <option id="8" value="educacion">Educación</option>
+                                                    <option id="9" value="vacaciones">Vacaciones</option>
+                                                    <option id="10" value="capacitacion" >Capacitación</option>
+                                                    <option id="11" value="otros">Otros</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -211,7 +211,7 @@
                                         </tr>
                                         <tr>
                                             <td class="textoderecha">
-                                                <label>Nombre de la empresa o <br> Negocio donde trabaja</label>
+                                                <label>Nombre de la empresa negocio</label>
                                             </td>
                                             <td>
                                                 <input name="txtempresa" id="txtempresa" placeholder="(*)">
@@ -219,7 +219,7 @@
                                         </tr>
                                         <tr>
                                             <td class="textoderecha">
-                                                <label>Dirección de la empresa o <br> negocio donde trabaja</label>
+                                                <label>Dirección de la empresa o negocio</label>
                                             </td>
                                             <td>
                                                 <input name="txtdiremp" id="txtdiremp" placeholder="(*)">
@@ -227,7 +227,7 @@
                                         </tr>
                                         <tr>
                                             <td class="textoderecha">
-                                                <label>Tiempo de actividad de la  <br> empresa o negocio</label>
+                                                <label>Tiempo de actividad</label>
                                             </td>
                                             <td>
                                                 <input name="txtactividademp" id="txtactividademp" placeholder="(*)">
@@ -269,6 +269,30 @@
                                             </td>
                                             <td>
                                                 <input id="txtplazo" name="txtplazo" type="number" min="1" max="60">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Cargar cedula</label>
+                                            </td>
+                                            <td>
+                                                <input type="file" id='fcedula' name="fcedula" accept='image/pdf, .pdf'></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Cargar rol de pagos</label>
+                                            </td>
+                                            <td>
+                                                <input type="file" id='frol' name="frol" accept='image/pdf, .pdf'></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textoderecha">
+                                                <label>Cargar planilla de servicio</label>
+                                            </td>
+                                            <td>
+                                                <input type="file" id='fplanilla' name="fplanilla" accept='image/pdf, .pdf'></p>
                                             </td>
                                         </tr>
                                     </tbody>

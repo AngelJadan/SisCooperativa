@@ -34,15 +34,15 @@
             .$credito->getTipoCredito()."',"//proposito
             .$credito->getAvaluo().",'"
             .$credito->getGarante()."','"
-            .""."','"//cedula
-            .""."','"//planilla
-            .""."',"//rol
+            .$credito->getCopiaCedula()."','"//cedula
+            .$credito->getCopiaPlanilla()."','"//planilla
+            .$credito->getCopiaRol()."',"//rol
             .$credito->getEdad().",'"
             .$credito->getPersona()."',"
             .$credito->getCiudad()->getId().","
             .$credito->getTotal().""
             .");";
-            //echo $sql;
+            echo $sql;
             try{
                 $con=new Conexion();
                 $query=$con->conectar()->prepare($sql);
@@ -131,6 +131,37 @@
             $query->execute();
             return $query->fetchAll();
         }
+
+        public function updCuota($creditoId,$fpago, $cuota,$cuenta){
+            $sql="UPDATE CUOTAS 
+            SET CUO_FECHA_PAGO='".$fpago."',
+            CUO_ESTADO='PAGADO',
+            ESTADOCUENTAS_ECT_ID=".$cuenta."
+            WHERE cuo_id=".$cuota." AND 
+            Creditos_cre_id=".$creditoId;
+            $mensaje='';
+
+            $query=Conexion::conectar()->prepare($sql);
+            if($query->execute()){
+                $mensaje="Debito Realizado";
+            }else{
+                $mensaje="Debito Realizado";
+            }
+            return $mensaje;
+        }
+        /**
+         * @param fecha Fecha de vencimiento de las cuotas.
+         * Este metodo, devuelve todas las cuotas que vencen en la fecha ingresada.
+         * @return  Devuelve el listado de cuotas de la fecha ingresada.
+         */
+        public function cuotas($fecha){
+            $sql="SELECT * FROM CUOTAS WHERE CUO_FECHA_VENCIMIENTO='".$fecha."'";
+            $con=new Conexion();
+            $query=$con->conectar()->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        }
+
     }
     /*$con=new ControladorCredito();
     $per=new Persona();

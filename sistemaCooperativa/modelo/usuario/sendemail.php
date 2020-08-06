@@ -14,13 +14,13 @@ try {
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = '';                     // SMTP username
-    $mail->Password   = '';                               // SMTP password
+    $mail->Username   = 'pruebas.jadan@gmail.com';                     // SMTP username
+    $mail->Password   = 'Pruebas2020';                               // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
     $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients
-    $mail->setFrom('angel.jadan12@gmail.com', 'Mailer');
+    $mail->setFrom('pruebas.jadan@gmail.com', 'Mailer');
     $mail->addAddress('ajadanc@est.ups.edu.ec', 'Angel');     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');

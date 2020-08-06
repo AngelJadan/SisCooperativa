@@ -4,7 +4,7 @@
         <link href="./img/favicon.png" rel="shortcut icon"/>
         <meta charset="utf-8"/>
         <meta content="width=1440, maximum-scale=1.0" name="viewport"/>
-        <link href="./css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/iniAdmi.css" rel="stylesheet" type="text/css"/>
         <link href="./css/administrativos.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="./js/validacionusuario.js"></script>
         <meta content="AnimaApp.com - Design to code, Automated." name="author">

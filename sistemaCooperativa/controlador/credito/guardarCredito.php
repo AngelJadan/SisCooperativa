@@ -30,6 +30,44 @@ include_once '../../modelo/credito/credito.php';
     $monto = $_POST["txtmonto"];
     $plazo = $_POST["txtmonto"];
 
+    $acedula = $_FILES['fcedula']['name'];
+    $rutacedula = $_FILES['fcedula']['tmp_name'];
+    $arol = $_FILES['frol']['name'];
+    $rutacedula = $_FILES['frol']['tmp_name'];
+    $aplanilla = $_FILES['fplanilla']['name'];
+    $rutaplanilla = $_FILES['fplanilla']['tmp_name'];
+
+    if(!file_exists('../../../../SisCooperativa/Publica/creditos/recursos/cedulas')
+    ||!file_exists('../../../../SisCooperativa/Publica/creditos/recursos/roles')
+    ||!file_exists('../../../../SisCooperativa/Publica/creditos/recursos/planillas')){
+        mkdir('../../../../SisCooperativa/Publica/creditos/recursos/cedulas',0777,true);
+        mkdir('../../../../SisCooperativa/Publica/creditos/recursos/roles',0777,true);
+        mkdir('../../../../SisCooperativa/Publica/creditos/recursos/planillas',0777,true);
+        if(file_exists('recursos')){
+            if(move_uploaded_file($rutacedula,'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$acedula.$doc)
+            &&move_uploaded_file($rutarol,'../../../../SisCooperativa/Publica/creditos/recursos/roles/'.$arol.$doc)
+            &&move_uploaded_file($rutaplanilla,'../../../../SisCooperativa/Publica/creditos/recursos/planillas/'.$aplanilla.$doc)){
+                /*$archcedula_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$acedula.$doc);
+                $archrol_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/roles/'.$arol.$doc);
+                $archplanilla_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/planillas/'.$aplanilla.$doc);
+                */
+            }
+        }
+    }else{
+        if(move_uploaded_file($rutacedula,'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$acedula.$doc)
+        &&move_uploaded_file($rutarol,'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$arol.$doc)
+        &&move_uploaded_file($rutaplanilla,'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$aplanilla.$doc)){
+            
+            /*$archcedula_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$acedula.$doc);
+            $archrol_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/roles/'.$arol.$doc);
+            $archplanilla_ok = move_uploaded_file($archivo['tmp_name'],'../../../../SisCooperativa/Publica/creditos/recursos/planillas/'.$aplanilla.$doc);
+            */
+        }
+    }
+    $ccedula = '../../../../SisCooperativa/Publica/creditos/recursos/cedulas/'.$acedula.$doc;
+    $crol = '../../../../SisCooperativa/Publica/creditos/recursos/roles/'.$arol.$doc;
+    $cplanilla = '../../../../SisCooperativa/Publica/creditos/recursos/planillas/'.$aplanilla.$doc;
+
     /*echo $tCredito.$tIden.$doc.$nombre.$apellido.$sexo.$ecivil.$email1.$email2.$telefono.
     $provincia.$ciudad.$direccion.$actividad.$empresa.$dempresa.$aempresa.$ingresos.$avaluo.$monto.$plazo;*/
 
@@ -59,6 +97,9 @@ include_once '../../modelo/credito/credito.php';
     $cre->setGarante("na");
     $cre->setTotal(0.00);
     $cre->setEdad($edad);
+    $cre->setCopiaCedula($ccedula);
+    $cre->setCopiaRol($crol);
+    $cre->setCopiaPlanilla($cplanilla);
     $ccre->insertarCredito($cre);
 
 ?>
