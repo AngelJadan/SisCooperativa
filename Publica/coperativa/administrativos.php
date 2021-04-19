@@ -41,6 +41,9 @@
                                     <tr><td><label>Cedula:</label></td><td><input id="txtcedula" name="txtcedula" onkeyup="cedula()" ></td><td><label id="vcedula" name="vcedula"></label></td></tr>
                                     <tr><td><label>Nombres:</label></td></td><td><input id="txtnombre" name="txtnombre"></td><td><label id="vnombre"name="vnombre"></label></td></tr>
                                     <tr><td><label>Apellidos:</label> </td><td><input id="txtapellido" name="txtapellido"></td><td><label id="vapellido" name="vapellido"></label></td></tr>
+                                    <tr><td><label>Sexo</label></td> <td><select><option value="masculino">Masculino</option>
+                                        <option value="femenino">Femenino</option>
+                                    </select></td></tr>
                                     <tr><td><label>Rol</label></td><td><select name="cboxrol">
                                                                                     <option value="Administrador">Administrador</option> 
                                                                                     <option value="Cajero" selected>Cajero</option>

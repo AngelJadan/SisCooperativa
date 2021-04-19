@@ -16,6 +16,7 @@
         }
         public function insertarCredito($credito){
             $this->credito=$credito;
+            $interes = $credito->getMonto()*1.5*
             $sql="INSERT INTO CREDITOS 
             VALUES(0,'"
             .$credito->getTamortizacion()."',"
@@ -23,8 +24,8 @@
             .$credito->getPlazo().","
             .$credito->getPlazo().",'"
             .$credito->getEstado()."',"
-            ."0".","//interes
-            ."0".","//tasa
+            .$credito->getInteres().","//interes
+            .$credito->getTasa().","//tasa
             .$credito->getTiempo().",'"
             .$credito->getNomEmpresa()."','"
             .$credito->getDirEmpresa()."',"

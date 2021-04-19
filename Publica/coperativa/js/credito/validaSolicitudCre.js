@@ -33,7 +33,8 @@ function validacion(){
     }if(docu==3) {
         clearDatC();
         if(tdocu.length>5){
-            buscarCliente();
+            dat= buscarCliente();
+            console.log(dat);
             clearDatC();
         }
     }
@@ -195,8 +196,8 @@ function mySubmitFunction(e){
         guardarDatos(datos, direccion);
         //alert(datos);
     }else{
-        e.preventDefault();
-        alert("falta");
+        //e.preventDefault();
+        alert("Falta llenar datos");
     }
 }
 function guardarDatos(datos, direccion){
@@ -209,4 +210,4 @@ function guardarDatos(datos, direccion){
             alert(r);
         }
     });
-}-
+}

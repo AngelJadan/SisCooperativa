@@ -4,7 +4,8 @@ include_once 'controladorCredito.php';
 include_once '../../modelo/credito/credito.php';
 
 
-    //$socio = $_POST["cboxsocio"];
+    $socio = $_POST["cboxsocio"];
+    echo $socio;
     $tCredito = $_POST["cboxtipoc"];
     $tIden = $_POST["iden"];
     $doc = $_POST["txtdocumento"];
@@ -29,6 +30,7 @@ include_once '../../modelo/credito/credito.php';
     $avaluo = $_POST["txtavaluo"];
     $monto = $_POST["txtmonto"];
     $plazo = $_POST["txtmonto"];
+    
 
     $acedula = $_FILES['fcedula']['name'];
     $rutacedula = $_FILES['fcedula']['tmp_name'];
@@ -82,6 +84,18 @@ include_once '../../modelo/credito/credito.php';
     }
     $loc->setId($ciuId);
     $cre->setCiudad($loc);
+    if($tCredito=="educacion"){
+        $tin=0.78;
+        $cre->setTasa(0.78);
+    }if($tCredito=="consumo"){
+        $cre->setTasa(1.40);
+        $tin=1.40;
+    }else{
+        $cre->setTasa(1);
+        $tin=1;
+    }
+    $interes=$monto*$tin*$plazo;
+    $cre->setInteres($interes);
     $cre->setTipoCredito($tCredito);
     $cre->setActEmpresa($actividad);
     $cre->setNomEmpresa($empresa);
